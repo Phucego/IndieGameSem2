@@ -1,2 +1,2 @@
-# IndieCardGame2D
- giv mi card game
+# Indie Card Game 2D
+ Indie Games lul
