@@ -6,7 +6,12 @@ using UnityEngine.InputSystem;
 [DefaultExecutionOrder(-1)]
 public class InputManager : MonoBehaviour
 {
-   
+    public delegate void StartTouchEvent(Vector2 position, float time);
+    public delegate void EndTouchEvent(Vector2 position, float time);
+
+    public event StartTouchEvent OnStartTouch;
+    public event StartTouchEvent OnEndTouch;
+
     private TouchControls touchControls;
 
     private void Awake()
@@ -28,12 +33,16 @@ public class InputManager : MonoBehaviour
         touchControls.Touch.TouchPress.started += ctx => StartTouch(ctx);
         touchControls.Touch.TouchPress.canceled += ctx => EndTouch(ctx);
     }
-    void StartTouch(InputAction.CallbackContext context)
-    {
 
+    private void StartTouch(InputAction.CallbackContext context)
+    {
+        Debug.Log("Touch started " + touchControls.Touch.TouchPosition.ReadValue<Vector2>());
+        if (OnStartTouch != null) OnStartTouch(touchControls.Touch.TouchPosition.ReadValue<Vector2>(), (float)context.startTime);
+        
+               
     }
-    void EndTouch(InputAction.CallbackContext context)
+    private void EndTouch(InputAction.CallbackContext context)
     {
-
+        Debug.Log("Touch ended " + touchControls.Touch.TouchPosition.ReadValue<Vector2>());
     }
 }
