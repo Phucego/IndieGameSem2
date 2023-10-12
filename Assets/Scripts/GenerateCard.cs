@@ -11,6 +11,7 @@ public class GenerateCard : ScriptableObject
     public int hp;
     public int cost;
     public int attack;
+    public int defense;
 
     [Header("Words")]
     public string cardName;

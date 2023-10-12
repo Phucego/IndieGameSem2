@@ -4,7 +4,7 @@ using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem;
 //This script will execute first
 [DefaultExecutionOrder(-1)]
-public class InputManager : MonoBehaviour
+public class InputManager : Singleton<InputManager>
 {
     public delegate void StartTouchEvent(Vector2 position, float time);
     public delegate void EndTouchEvent(Vector2 position, float time);
@@ -44,5 +44,6 @@ public class InputManager : MonoBehaviour
     private void EndTouch(InputAction.CallbackContext context)
     {
         Debug.Log("Touch ended " + touchControls.Touch.TouchPosition.ReadValue<Vector2>());
+        if (OnStartTouch != null) OnEndTouch(touchControls.Touch.TouchPosition.ReadValue<Vector2>(), (float)context.time);
     }
 }
