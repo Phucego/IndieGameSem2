@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b527e2120838ecf43b104dda69b514d8, type: 3}
-  m_Name: Slimandy
+  m_Name: Slimdier
   m_EditorClassIdentifier: 
   hp: 6
   cost: 1
   attack: 3
   defense: 0
-  cardName: Slimady
+  cardName: Slimdier
   description: Your average friendly slime that attacks!
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 1b2ec5af4c955774485e0a429bf04a13, type: 3}

@@ -6,11 +6,11 @@ public class TouchInputScript : MonoBehaviour
 {
     Touch touchInput;
     Vector2 touchInputPos;
-    public TouchInputScript instance;
+    
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        
     }
 
     //Fixed Update for physics code.
@@ -27,33 +27,18 @@ public class TouchInputScript : MonoBehaviour
             //Debug.Log(touchInputPos);
         }
 
-        //while the player holding on the screen
-        if(touchInput.phase == TouchPhase.Stationary)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(touchInputPos);
-            RaycastHit hit;
-            if(Physics.Raycast(ray, out hit))      //out syntax is for output only
-            {
-                if(hit.transform == transform)
-                {
-                    
-                }
-            }
-            
-        }
-        //while the player release from the screen
-        if(touchInput.phase == TouchPhase.Ended)
-        {
-
-            
-       
-        }
-
-        
+        OnMouseDrag();
     }
     // Update is called once per frame
     void Update()
     {
         
+    }
+    //Dragging objects 
+    void OnMouseDrag()
+    {
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1 * (Camera.main.transform.position.z));
+        Vector3 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
+        transform.position = objectPos;
     }
 }
