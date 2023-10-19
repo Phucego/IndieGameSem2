@@ -14,10 +14,14 @@ public class CardDisplay : MonoBehaviour
     public Text costText;
     public Text hpText;
     public Text atkText;
-
+    public Text dfText;
+    
     [Header("Image Display")]
     public Image image;
-
+    public Image atkImage;
+    public Image defenseImage;
+    public Image hpImage;
+    public Image costImage;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +33,13 @@ public class CardDisplay : MonoBehaviour
         costText.text = card.cost.ToString();
         hpText.text = card.hp.ToString();
         atkText.text = card.attack.ToString();
-
+        dfText.text = card.defense.ToString();
         //image
         image.sprite = card.image;
+        atkImage.sprite = card.atkImage;
+        defenseImage.sprite = card.defenseImage;
+        hpImage.sprite = card.hpImage;
+        costImage.sprite = card.costImage;
 
     }
 
