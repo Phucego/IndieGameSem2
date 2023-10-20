@@ -23,3 +23,5 @@ MonoBehaviour:
   defenseImage: {fileID: 959588145, guid: f6b8c5e1208a8f64d988a26dde1ed65f, type: 3}
   hpImage: {fileID: 155493295, guid: f6b8c5e1208a8f64d988a26dde1ed65f, type: 3}
   costImage: {fileID: 1166376245, guid: f6b8c5e1208a8f64d988a26dde1ed65f, type: 3}
+  cardBGImage: {fileID: -1598054734, guid: f6b8c5e1208a8f64d988a26dde1ed65f, type: 3}
+  cardBorderImage: {fileID: -24287402, guid: f6b8c5e1208a8f64d988a26dde1ed65f, type: 3}

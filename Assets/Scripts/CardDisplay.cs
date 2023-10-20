@@ -22,6 +22,8 @@ public class CardDisplay : MonoBehaviour
     public Image defenseImage;
     public Image hpImage;
     public Image costImage;
+    public Image cardBGImage;
+    public Image cardBorderImage;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,8 @@ public class CardDisplay : MonoBehaviour
         defenseImage.sprite = card.defenseImage;
         hpImage.sprite = card.hpImage;
         costImage.sprite = card.costImage;
+        cardBGImage.sprite = card.cardBGImage;
+        cardBorderImage.sprite = card.cardBorderImage;
 
     }
 

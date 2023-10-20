@@ -23,5 +23,7 @@ public class GenerateCard : ScriptableObject
     public Sprite defenseImage;
     public Sprite hpImage;
     public Sprite costImage;
+    public Sprite cardBGImage;
+    public Sprite cardBorderImage;
 
 }
