@@ -102,6 +102,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -809,15 +821,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      greenIconsExport_24: -463304834
       greenIconsExport_26: 1163633108
       greenIconsExport_10: 1990594999
-      greenIconsExport_28: -1688203715
+      greenIconsExport_33: 1864967195
       greenIconsExport_17: 1482006912
       greenIconsExport_1: -1820051412
       greenIconsExport_20: -1236400402
       greenIconsExport_27: 309855249
-      greenIconsExport_33: 1864967195
+      greenIconsExport_6: -526742479
       greenIconsExport_9: 832112288
       greenIconsExport_30: -1976990975
       greenIconsExport_19: -526556694
@@ -829,7 +840,7 @@ TextureImporter:
       greenIconsExport_12: -1333392219
       greenIconsExport_8: 761558866
       greenIconsExport_22: -343440998
-      greenIconsExport_34: 191538561
+      greenIconsExport_16: 1366316490
       greenIconsExport_32: 2007796320
       greenIconsExport_25: 827970956
       greenIconsExport_0: -206516749
@@ -838,12 +849,13 @@ TextureImporter:
       greenIconsExport_3: 739083328
       greenIconsExport_7: -1445823991
       greenIconsExport_13: -1405515316
-      greenIconsExport_16: 1366316490
-      greenIconsExport_15: -774667949
-      greenIconsExport_6: -526742479
-      greenIconsExport_21: 1512050928
-      greenIconsExport_5: -1729318766
       greenIconsExport_23: 1345107027
+      greenIconsExport_34: 191538561
+      greenIconsExport_24: -463304834
+      greenIconsExport_21: 1512050928
+      greenIconsExport_15: -774667949
+      greenIconsExport_5: -1729318766
+      greenIconsExport_28: -1688203715
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

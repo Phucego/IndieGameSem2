@@ -546,7 +546,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &665576784
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -622,7 +622,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
 --- !u!114 &665576786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,12 +636,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPower: 6
-  groundCheck: {fileID: 1357380021}
-  canJump: 0
+  moveSpeed: 4
+  horizontal: 0
   isJumping: 0
-  platform:
+  isFacingRight: 0
+  platformLayer:
     serializedVersion: 2
     m_Bits: 64
+  groundChecking: {fileID: 1357380022}
 --- !u!1 &1165130263
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Keyboard>/d
+  m_ControlPath: <Touchscreen>/touch2/press
 --- !u!114 &1165130266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,8 +761,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 130575443, guid: 914a6799364b8cf498a088196d08d306, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -891,7 +893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Keyboard>/space
+  m_ControlPath: <Touchscreen>/touch0/tap
 --- !u!114 &1469586730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,8 +958,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 2073119658, guid: 914a6799364b8cf498a088196d08d306, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1026,7 +1028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Keyboard>/a
+  m_ControlPath: <Touchscreen>/touch1/press
 --- !u!114 &1653596315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1091,8 +1093,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -1333392219, guid: 914a6799364b8cf498a088196d08d306, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1796,8 +1798,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -506785432, guid: 914a6799364b8cf498a088196d08d306, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

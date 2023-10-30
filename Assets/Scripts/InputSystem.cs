@@ -5,54 +5,82 @@ using UnityEngine.InputSystem;
 public class InputSystem : MonoBehaviour
 {
     Rigidbody2D rb2d;
-    public float jumpPower;
+    public float jumpPower, moveSpeed, horizontal;
+    public bool  isJumping, isFacingRight;
+    public LayerMask platformLayer;
+    public Transform groundChecking;
+ 
 
-    public GameObject groundCheck;
+    
+    
+    
 
-    public bool canJump;
-    public bool isJumping;
 
-    public LayerMask platform;
-
-    BoxCollider2D boxcol2d;
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        canJump = true;
-        isJumping = false;
+       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        rb2d.velocity = new Vector2(horizontal * moveSpeed, rb2d.velocity.y);
+
+        FlippingDirections();
     }
     private void FixedUpdate()
     {
-   
-        
+
+
     }
     public void Jump(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed && canJump == true && isJumping == false)
-        {
-            rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            isJumping = true;
-            canJump = false;
+        if (ctx.performed && IsGrounded())
+        {  
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
+            Debug.LogWarning(ctx.control.name);
+
         }
-        else
+        
+    }
+
+    public void LeftMovement(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
         {
-            isJumping = false;
-            canJump = true;
+            
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+
+
+
+
+    private bool IsGrounded()
     {
-        if(collision.gameObject.tag == "Platform")
+        return Physics2D.OverlapCircle(groundChecking.position, .2f, platformLayer);
+    }
+    void FlipCharacter()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
+    }
+
+    void FlippingDirections()
+    {
+        if (!isFacingRight && horizontal > 0f)
         {
-            isJumping = false;
-            canJump = true;
+            FlipCharacter();
         }
+        else if (isFacingRight && horizontal < 0f)
+        {
+            FlipCharacter();
+        }
+
     }
 }
