@@ -27,8 +27,8 @@ public class InputSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb2d.velocity = new Vector2(horizontal * moveSpeed, rb2d.velocity.y);
 
+       
         FlippingDirections();
     }
     private void FixedUpdate()
@@ -47,12 +47,9 @@ public class InputSystem : MonoBehaviour
         
     }
 
-    public void LeftMovement(InputAction.CallbackContext ctx)
+    public void Movement(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
-        {
-            
-        }
+        rb2d.velocity = ctx.ReadValue<Vector2>() * moveSpeed;
     }
 
 
@@ -81,6 +78,5 @@ public class InputSystem : MonoBehaviour
         {
             FlipCharacter();
         }
-
     }
 }
