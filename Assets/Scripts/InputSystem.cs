@@ -11,24 +11,16 @@ public class InputSystem : MonoBehaviour
     public Transform groundChecking;
  
 
-    
-    
-    
-
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-       
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
-       
         FlippingDirections();
     }
     private void FixedUpdate()
@@ -36,31 +28,31 @@ public class InputSystem : MonoBehaviour
 
 
     }
+    //Handle Jump inputs
     public void Jump(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && IsGrounded())
-        {  
+        {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
-            Debug.LogWarning(ctx.control.name);
-
+            
         }
-        
     }
 
     public void Movement(InputAction.CallbackContext ctx)
     {
-        rb2d.velocity = ctx.ReadValue<Vector2>() * moveSpeed;
+        if(ctx.performed)
+        {
+            rb2d.velocity = ctx.ReadValue<Vector2>() * moveSpeed;
+        }
+        
     }
 
-
-
-
-
+    //If the player is at the ground
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundChecking.position, .2f, platformLayer);
+        return Physics2D.OverlapCircle(groundChecking.position, .2f, platformLayer);    //create a circle taking the ground check GameObject's position
     }
-    void FlipCharacter()
+    void FlipCharacter()    //flipping character function
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
@@ -68,7 +60,7 @@ public class InputSystem : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    void FlippingDirections()
+    void FlippingDirections()   //function deciding whether the character will flip or not
     {
         if (!isFacingRight && horizontal > 0f)
         {
