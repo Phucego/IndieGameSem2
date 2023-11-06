@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class InputSystem : MonoBehaviour
 {
     Rigidbody2D rb2d;
-    public float jumpPower, moveSpeed, horizontal;
+    public float jumpPower, moveSpeed, horizontal = 1;
     public bool  isJumping, isFacingRight;
     public LayerMask platformLayer;
     public Transform groundChecking;
@@ -21,11 +21,11 @@ public class InputSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FlippingDirections();
+       
     }
     private void FixedUpdate()
     {
-
+        
 
     }
     //Handle Jump inputs
@@ -34,17 +34,17 @@ public class InputSystem : MonoBehaviour
         if (ctx.performed && IsGrounded())
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
-            
         }
     }
 
     public void Movement(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed)
+        if(IsGrounded())
         {
             rb2d.velocity = ctx.ReadValue<Vector2>() * moveSpeed;
+            
+            Debug.LogWarning("pressing");
         }
-        
     }
 
     //If the player is at the ground
