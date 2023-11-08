@@ -9,7 +9,8 @@ public class InputSystem : MonoBehaviour
     public bool  isJumping, isFacingRight;
     public LayerMask platformLayer;
     public Transform groundChecking;
- 
+
+    Ladder ladderScript;
     
 
     // Start is called before the first frame update
