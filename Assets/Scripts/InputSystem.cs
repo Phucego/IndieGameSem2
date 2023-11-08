@@ -10,7 +10,7 @@ public class InputSystem : MonoBehaviour
     public LayerMask platformLayer;
     public Transform groundChecking;
  
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -23,28 +23,28 @@ public class InputSystem : MonoBehaviour
     {
        
     }
-    private void FixedUpdate()
+    private void FixedUpdate()      //handle physics
     {
-        
+        moveRightDir();
+        moveLeftDir();
 
     }
     //Handle Jump inputs
     public void Jump(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && IsGrounded())
+        if (IsGrounded())
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
         }
     }
 
-    public void Movement(InputAction.CallbackContext ctx)
+    public void MovementRight(InputAction.CallbackContext ctx)
     {
-        if(IsGrounded())
-        {
-            rb2d.velocity = ctx.ReadValue<Vector2>() * moveSpeed;
-            
-            Debug.LogWarning("pressing");
-        }
+        moveRightDir();
+    }
+    public void MovementLeft(InputAction.CallbackContext ctx)
+    {
+        moveLeftDir();        
     }
 
     //If the player is at the ground
@@ -70,5 +70,18 @@ public class InputSystem : MonoBehaviour
         {
             FlipCharacter();
         }
+    }
+    //PLAYER'S MOVEMENTS
+    void moveRightDir()
+    {
+        rb2d.AddForce(transform.right * moveSpeed, ForceMode2D.Impulse);
+        horizontal = 1f;
+        isFacingRight = true;
+    }
+    void moveLeftDir()
+    {
+        rb2d.AddForce(-transform.right * moveSpeed, ForceMode2D.Impulse);
+        horizontal = -1f;
+        isFacingRight = false;
     }
 }
