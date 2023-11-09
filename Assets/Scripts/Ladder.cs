@@ -26,7 +26,7 @@ public class Ladder : MonoBehaviour
         if (isClimbing)
         {
             rb2d.gravityScale = 0f;
-            rb2d.velocity = new Vector2(rb2d.velocity.x, vertical * speed);
+            rb2d.velocity = new Vector2(rb2d.velocity.x, vertical * speed) * Time.deltaTime;
         }
         if(!isClimbing)
         {
@@ -44,12 +44,13 @@ public class Ladder : MonoBehaviour
         if(collision.CompareTag("Ladder"))
         {
             isLadder = true;
+            isClimbing = true;
 
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         isLadder = false;
-        isClimbing = true;
+        isClimbing = false;
     }
 }
