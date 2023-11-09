@@ -85,4 +85,8 @@ public class InputSystem : MonoBehaviour
         horizontal = -1f;
         isFacingRight = false;
     }
+    void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
 }
