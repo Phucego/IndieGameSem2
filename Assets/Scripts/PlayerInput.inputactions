@@ -29,6 +29,24 @@
                     "id": "9dc50f5f-a41d-4922-9c69-e544f60963e4",
                     "expectedControlType": "Button",
                     "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interaction",
+                    "type": "Button",
+                    "id": "7aa3359f-421c-4bc7-835f-b053736c634e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Counter Jump",
+                    "type": "Button",
+                    "id": "0789d96d-8bcc-464e-8f99-633f001af2d4",
+                    "expectedControlType": "Button",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 }
@@ -49,7 +67,7 @@
                     "name": "",
                     "id": "f9e9b8dd-278d-4249-b4db-9cbff7ce8799",
                     "path": "<Keyboard>/a",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Movement Left",
@@ -64,6 +82,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Movement Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9aff9140-5ce9-465d-ae5a-722067c12920",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b8d35f8-7985-4677-9e5d-473e095bb9d7",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Counter Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

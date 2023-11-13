@@ -4,25 +4,28 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class InputSystem : MonoBehaviour
 {
+
+    Animator anim;
     Rigidbody2D rb2d;
     public float jumpPower, moveSpeed, horizontal = 1;
-    public bool  isJumping, isFacingRight;
+    public bool  isJumping, isFacingRight, isInteractButtonPressed;
     public LayerMask platformLayer;
     public Transform groundChecking;
 
-    Ladder ladderScript;
+
     
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        
     }
     private void FixedUpdate()      //handle physics
     {
@@ -47,7 +50,14 @@ public class InputSystem : MonoBehaviour
     {
         moveLeftDir();        
     }
-
+    public void Interaction(InputAction.CallbackContext ctx)
+    {
+        isInteractButtonPressed = true;
+    }
+    public void CounterJump(InputAction.CallbackContext ctx)
+    {
+        rb2d.AddForce(-transform.up * jumpPower, ForceMode2D.Impulse);
+    }
     //If the player is at the ground
     private bool IsGrounded()
     {
@@ -76,17 +86,20 @@ public class InputSystem : MonoBehaviour
     void moveRightDir()
     {
         rb2d.AddForce(transform.right * moveSpeed, ForceMode2D.Impulse);
+        anim.SetFloat("Speed", moveSpeed);
         horizontal = 1f;
         isFacingRight = true;
     }
     void moveLeftDir()
     {
         rb2d.AddForce(-transform.right * moveSpeed, ForceMode2D.Impulse);
+        anim.SetFloat("Speed", moveSpeed);
         horizontal = -1f;
         isFacingRight = false;
     }
-    void PauseGame()
+    public void PauseGame()
     {
         Time.timeScale = 0f;
     }
+    
 }
