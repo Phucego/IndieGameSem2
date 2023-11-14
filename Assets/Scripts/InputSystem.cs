@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 public class InputSystem : MonoBehaviour
 {
 
@@ -12,7 +13,7 @@ public class InputSystem : MonoBehaviour
     public LayerMask platformLayer;
     public Transform groundChecking;
 
-
+    
     
 
     // Start is called before the first frame update
@@ -58,6 +59,13 @@ public class InputSystem : MonoBehaviour
     {
         rb2d.AddForce(-transform.up * jumpPower, ForceMode2D.Impulse);
     }
+    public void PauseGame(InputAction.CallbackContext ctx)
+    {
+        Time.timeScale = 0f;
+        SceneManager.LoadScene("PauseScene");
+    }
+
+
     //If the player is at the ground
     private bool IsGrounded()
     {
@@ -96,10 +104,6 @@ public class InputSystem : MonoBehaviour
         anim.SetFloat("Speed", moveSpeed);
         horizontal = -1f;
         isFacingRight = false;
-    }
-    public void PauseGame()
-    {
-        Time.timeScale = 0f;
     }
     
 }
