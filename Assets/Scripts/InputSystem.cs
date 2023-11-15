@@ -13,14 +13,15 @@ public class InputSystem : MonoBehaviour
     public LayerMask platformLayer;
     public Transform groundChecking;
 
-    
-    
+    private InputAction m_MoveAction;
+    Vector2 playerMovement;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        m_MoveAction = new InputAction("Move");
     }
 
     // Update is called once per frame
@@ -30,9 +31,12 @@ public class InputSystem : MonoBehaviour
     }
     private void FixedUpdate()      //handle physics
     {
-        moveRightDir();
-        moveLeftDir();
-
+        //moveRightDir();
+        //moveLeftDir();
+    }
+    private void Awake()
+    {
+        
     }
     //Handle Jump inputs
     public void Jump(InputAction.CallbackContext ctx)
@@ -45,11 +49,11 @@ public class InputSystem : MonoBehaviour
 
     public void MovementRight(InputAction.CallbackContext ctx)
     {
-        moveRightDir();
+       // moveRightDir();
     }
     public void MovementLeft(InputAction.CallbackContext ctx)
     {
-        moveLeftDir();        
+        //moveLeftDir();        
     }
     public void Interaction(InputAction.CallbackContext ctx)
     {
@@ -91,19 +95,31 @@ public class InputSystem : MonoBehaviour
         }
     }
     //PLAYER'S MOVEMENTS
-    void moveRightDir()
+
+    void Movement(InputAction.CallbackContext ctx)
     {
-        rb2d.AddForce(transform.right * moveSpeed, ForceMode2D.Impulse);
-        anim.SetFloat("Speed", moveSpeed);
-        horizontal = 1f;
-        isFacingRight = true;
+
     }
-    void moveLeftDir()
+
+    //void moveRightDir()
+    //{
+    //   // rb2d.AddForce(transform.right * moveSpeed, ForceMode2D.Impulse);
+        
+    //    anim.SetFloat("Speed", moveSpeed);
+    //    horizontal = 1f;
+    //    isFacingRight = true;
+    //}
+    //void moveLeftDir()
+    //{
+    //   // rb2d.AddForce(-transform.right * moveSpeed, ForceMode2D.Impulse);
+    //    anim.SetFloat("Speed", moveSpeed);
+    //    horizontal = -1f;
+    //    isFacingRight = false;
+    //}
+
+    void OnInputPerformed(InputAction.CallbackContext ctx)
     {
-        rb2d.AddForce(-transform.right * moveSpeed, ForceMode2D.Impulse);
-        anim.SetFloat("Speed", moveSpeed);
-        horizontal = -1f;
-        isFacingRight = false;
+        playerMovement = m_MoveAction.ReadValue<Vector2>();
     }
     
 }
