@@ -42,9 +42,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Movement",
+                    "name": "MovementLeft",
                     "type": "Button",
-                    "id": "082cefab-8515-4038-b2c2-c038067887cf",
+                    "id": "de2a9dbe-b8f2-4b8a-93ab-0c6c0684a4a2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MovementRight",
+                    "type": "Button",
+                    "id": "5cf2df31-ad6a-4d8e-b5cd-e026eeea6292",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -98,23 +107,23 @@
                 },
                 {
                     "name": "",
-                    "id": "0bfd6c6d-7d66-4e64-ba27-2304d90df3d5",
+                    "id": "7a38fd24-5cbb-46c8-9dfb-6658c4890eb8",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "MovementLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "49f51ba8-124e-4668-beda-87ba9f8ee0f4",
+                    "id": "78aea939-efb5-4465-a4ee-c4933403ed54",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "MovementRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

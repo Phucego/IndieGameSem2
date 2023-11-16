@@ -2415,38 +2415,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 869065580}
         m_TargetAssemblyTypeName: InputSystem, Assembly-CSharp
-        m_MethodName: MovementLeft
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: d2cb44a0-8237-486c-ac6c-ddf50b8c10b1
-    m_ActionName: Player/Movement Left[/Keyboard/a]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 869065580}
-        m_TargetAssemblyTypeName: InputSystem, Assembly-CSharp
-        m_MethodName: MovementRight
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 9dc50f5f-a41d-4922-9c69-e544f60963e4
-    m_ActionName: Player/Movement Right[/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 869065580}
-        m_TargetAssemblyTypeName: InputSystem, Assembly-CSharp
         m_MethodName: Interaction
         m_Mode: 0
         m_Arguments:
@@ -2491,6 +2459,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d6b913ce-9730-4cdc-a8e7-12728614ce63
     m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 869065580}
+        m_TargetAssemblyTypeName: InputSystem, Assembly-CSharp
+        m_MethodName: MovementLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: de2a9dbe-b8f2-4b8a-93ab-0c6c0684a4a2
+    m_ActionName: Player/MovementLeft[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 869065580}
+        m_TargetAssemblyTypeName: InputSystem, Assembly-CSharp
+        m_MethodName: MovementRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5cf2df31-ad6a-4d8e-b5cd-e026eeea6292
+    m_ActionName: Player/MovementRight[/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -7397,69 +7397,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1001 &2746660050665986227
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 2
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2746660048646448774, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_Name
-      value: Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746660048646448774, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746660048646448778, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746660048646448778, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -34.98491
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746660048646448778, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.014
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746660048646448778, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746660048646448778, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746660048646448778, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746660048646448778, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746660048646448778, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746660048646448778, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746660048646448778, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746660048646448778, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_AddedGameObjects: []
-  m_SourcePrefab: {fileID: 100100000, guid: a31142daa06187e42a31c6e4039db2d5, type: 3}
 --- !u!1001 &8322036944128672829
 PrefabInstance:
   m_ObjectHideFlags: 0
