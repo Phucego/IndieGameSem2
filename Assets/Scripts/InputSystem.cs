@@ -8,30 +8,35 @@ public class InputSystem : MonoBehaviour
 
     Animator anim;
     Rigidbody2D rb2d;
-    public float jumpPower, moveSpeed, horizontal = 1;
+    public float jumpPower, moveSpeed, horizontal;
     public bool  isJumping, isFacingRight, isInteractButtonPressed;
     public LayerMask platformLayer;
     public Transform groundChecking;
 
-    Vector2 playerMovement;
+    Vector2 playerMovementDir = Vector2.zero, movementInput;
 
+    //Input actions
+    public InputAction playerControls;
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        
+        horizontal = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    
+        //Reading values
+        playerMovementDir = playerControls.ReadValue<Vector2>();
+        Movement();
     }
     private void FixedUpdate()      //handle physics
     {
-        moveRightDir();
-        moveLeftDir();
+
+        
     }
     private void Awake()
     {
@@ -45,15 +50,8 @@ public class InputSystem : MonoBehaviour
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
         }
     }
-
-    public void MovementRight(InputAction.CallbackContext ctx)
-    {
-       moveRightDir();
-    }
-    public void MovementLeft(InputAction.CallbackContext ctx)
-    {
-        moveLeftDir();        
-    }
+    
+   
     public void Interaction(InputAction.CallbackContext ctx)
     {
         isInteractButtonPressed = true;
@@ -95,27 +93,22 @@ public class InputSystem : MonoBehaviour
     }
     //PLAYER'S MOVEMENTS
 
-
-
-    void moveRightDir()
+    void Movement()
     {
-        rb2d.AddForce(transform.right * moveSpeed, ForceMode2D.Impulse);
-
-        anim.SetFloat("Speed", moveSpeed);
-        horizontal = 1f;
-        isFacingRight = true;
-    }
-    void moveLeftDir()
-    {
-        rb2d.AddForce(-transform.right * moveSpeed, ForceMode2D.Impulse);
-        anim.SetFloat("Speed", moveSpeed);
-        horizontal = -1f;
-        isFacingRight = false;
+        Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, 0);   //prevent the player moving upwards while holding S or D
+        rb2d.velocity = playerVelocity;
+        
+        FlippingDirections();
+        
     }
 
-    //void OnInputPerformed(InputAction.CallbackContext ctx)
-    //{
-    //    playerMovement = m_MoveAction.ReadValue<Vector2>();
-    //}
-    
+
+    void OnEnable()
+    {
+        playerControls.Enable();
+    }
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
 }
