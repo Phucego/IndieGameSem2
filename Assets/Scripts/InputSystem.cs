@@ -8,13 +8,15 @@ public class InputSystem : MonoBehaviour
 
     Animator anim;
     Rigidbody2D rb2d;
-    public float jumpPower, moveSpeed, horizontal;
+    public float jumpPower, moveSpeed, horizontal, jumpTime, groundCheckRadius;
     public bool  isJumping, isFacingRight, isInteractButtonPressed;
     public LayerMask platformLayer;
     public Transform groundChecking;
-
+    private bool isGrounded;
+    private float jumpTimeCounter;
     Vector2 playerMovementDir = Vector2.zero, movementInput;
 
+    Button jump;
     //Input actions
     public InputAction playerControls;
     // Start is called before the first frame update
@@ -32,6 +34,9 @@ public class InputSystem : MonoBehaviour
         //Reading values
         playerMovementDir = playerControls.ReadValue<Vector2>();
         Movement();
+
+
+        
     }
     private void FixedUpdate()      //handle physics
     {
@@ -45,9 +50,31 @@ public class InputSystem : MonoBehaviour
     //Handle Jump inputs
     public void Jump(InputAction.CallbackContext ctx)
     {
-        if (IsGrounded())
+      
+        isGrounded = Physics2D.OverlapCircle(groundChecking.position, groundCheckRadius, platformLayer);
+        if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
         {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
+            isJumping = true;
+            jumpTimeCounter = jumpTime; 
+            rb2d.velocity = Vector2.up * jumpPower;
+        }
+        if (Input.GetKey(KeyCode.Space) && isJumping == true)
+        {
+            
+            if (jumpTimeCounter > 0)
+            {
+                rb2d.velocity = Vector2.up * jumpPower;
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                isJumping = false;
+            }
+            rb2d.velocity = Vector2.up * jumpPower;
+        }
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            isJumping = false;
         }
     }
     
@@ -55,6 +82,7 @@ public class InputSystem : MonoBehaviour
     public void Interaction(InputAction.CallbackContext ctx)
     {
         isInteractButtonPressed = true;
+       
     }
     public void CounterJump(InputAction.CallbackContext ctx)
     {
@@ -68,10 +96,7 @@ public class InputSystem : MonoBehaviour
 
 
     //If the player is at the ground
-    private bool IsGrounded()
-    {
-        return Physics2D.OverlapCircle(groundChecking.position, .2f, platformLayer);    //create a circle taking the ground check GameObject's position
-    }
+    
     void FlipCharacter()    //flipping character function
     {
         isFacingRight = !isFacingRight;
@@ -93,7 +118,7 @@ public class InputSystem : MonoBehaviour
     }
     //PLAYER'S MOVEMENTS
 
-    void Movement()
+    public void Movement()
     {
         Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, 0);   //prevent the player moving upwards while holding S or D
         rb2d.velocity = playerVelocity;
