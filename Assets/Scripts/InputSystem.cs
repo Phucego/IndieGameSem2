@@ -33,15 +33,14 @@ public class InputSystem : MonoBehaviour
     
         //Reading values
         playerMovementDir = playerControls.ReadValue<Vector2>();
-        Movement();
+       
 
 
         
     }
     private void FixedUpdate()      //handle physics
     {
-
-        
+        Movement();
     }
     private void Awake()
     {
@@ -52,11 +51,13 @@ public class InputSystem : MonoBehaviour
     {
       
         isGrounded = Physics2D.OverlapCircle(groundChecking.position, groundCheckRadius, platformLayer);
-        if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
+        if (isGrounded == true /*&& Input.GetKeyDown(KeyCode.Space)*/)
         {
             isJumping = true;
-            jumpTimeCounter = jumpTime; 
-            rb2d.velocity = Vector2.up * jumpPower;
+            jumpTimeCounter = jumpTime;
+            //rb2d.velocity = Vector2.up * jumpPower;
+            rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            Debug.Log(Vector2.up * jumpPower);
         }
         if (Input.GetKey(KeyCode.Space) && isJumping == true)
         {
@@ -120,7 +121,7 @@ public class InputSystem : MonoBehaviour
 
     public void Movement()
     {
-        Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, 0);   //prevent the player moving upwards while holding S or D
+        Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.velocity.y);   //prevent the player moving upwards while holding S or D
         rb2d.velocity = playerVelocity;
         
         FlippingDirections();
