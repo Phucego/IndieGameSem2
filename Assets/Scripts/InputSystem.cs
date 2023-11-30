@@ -16,6 +16,14 @@ public class InputSystem : MonoBehaviour
     private float jumpTimeCounter;
     Vector2 playerMovementDir = Vector2.zero, movementInput;
 
+
+    //Grabbing objects
+    public Transform grabPoint;
+    [SerializeField] private Transform rayPoint;
+    [SerializeField] private float rayDist;
+    private GameObject grabbedObject;
+    private int layerIndex;
+
     Button jump;
     //Input actions
     public InputAction playerControls;
@@ -25,6 +33,8 @@ public class InputSystem : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         horizontal = 1;
+
+        layerIndex = LayerMask.NameToLayer("Objects");
     }
 
     // Update is called once per frame
@@ -33,9 +43,28 @@ public class InputSystem : MonoBehaviour
     
         //Reading values
         playerMovementDir = playerControls.ReadValue<Vector2>();
-       
 
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.right, rayDist);
+        if(hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
+        {
+            //Player grab objects
+            if(Keyboard.current.eKey.wasPressedThisFrame && grabbedObject == null)
+            {
+                grabbedObject = hitInfo.collider.gameObject;
+                grabbedObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                grabbedObject.transform.position = grabPoint.position;
+                grabbedObject.transform.SetParent(transform);
+            }
+            //Player release objects
+            else if(Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
+                grabbedObject.transform.SetParent(null);
+                grabbedObject = null;
+            }
+        }
 
+        Debug.DrawRay(rayPoint.position, transform.right * rayDist);
         
     }
     private void FixedUpdate()      //handle physics
