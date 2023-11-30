@@ -55,8 +55,8 @@ public class InputSystem : MonoBehaviour
         {
             isJumping = true;
             jumpTimeCounter = jumpTime;
-            //rb2d.velocity = Vector2.up * jumpPower;
-            rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            rb2d.velocity = Vector2.up * jumpPower;
+            //rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             Debug.Log(Vector2.up * jumpPower);
         }
         if (Input.GetKey(KeyCode.Space) && isJumping == true)
@@ -121,7 +121,7 @@ public class InputSystem : MonoBehaviour
 
     public void Movement()
     {
-        Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.velocity.y);   //prevent the player moving upwards while holding S or D
+        Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.velocity.y);   
         rb2d.velocity = playerVelocity;
         
         FlippingDirections();
