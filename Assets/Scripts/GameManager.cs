@@ -9,12 +9,15 @@ public class GameManager : MonoBehaviour
     public GameManager instance;
     public bool hasPickedKey;
     public int coinPicked;
-
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
         hasPickedKey = false;
-        instance = this;
+        
     }
 
     // Update is called once per frame

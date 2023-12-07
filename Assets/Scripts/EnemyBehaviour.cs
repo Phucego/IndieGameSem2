@@ -25,7 +25,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
     bool IsFacingRight()
     {
-        //Mathf.Epsilon is used check a very small value
+        //Mathf.Epsilon is used for checking a very small value
         //For example 0.001
         return transform.localScale.x > Mathf.Epsilon;
     }

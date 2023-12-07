@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class InputSystem : MonoBehaviour
 {
-
+    //Player related
     Animator anim;
     Rigidbody2D rb2d;
     public float jumpPower, moveSpeed, horizontal, jumpTime, groundCheckRadius;
@@ -16,10 +16,7 @@ public class InputSystem : MonoBehaviour
     private float jumpTimeCounter;
     Vector2 playerMovementDir = Vector2.zero, movementInput;
 
-
-   
-
-    Button jump;
+    ButtonScript jump;
     //Input actions
     public InputAction playerControls;
     // Start is called before the first frame update
@@ -27,9 +24,6 @@ public class InputSystem : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        horizontal = 1;
-
-      
     }
 
     // Update is called once per frame
@@ -84,11 +78,7 @@ public class InputSystem : MonoBehaviour
     }
     
    
-    public void Interaction(InputAction.CallbackContext ctx)
-    {
-        isInteractButtonPressed = true;
-       
-    }
+   
     public void CounterJump(InputAction.CallbackContext ctx)
     {
         rb2d.AddForce(-transform.up * jumpPower, ForceMode2D.Impulse);
