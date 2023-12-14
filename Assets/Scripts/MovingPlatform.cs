@@ -13,6 +13,7 @@ public class MovingPlatform : MonoBehaviour
     private int i;
     private bool isActivated;
   
+    //Moving the platform using the array of points
     public void InitMoving(Vector3[] movingPoint)
     {
         pointPos = movingPoint;

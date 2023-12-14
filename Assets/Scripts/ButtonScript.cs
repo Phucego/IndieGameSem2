@@ -47,11 +47,11 @@ public class ButtonScript : MonoBehaviour
         anim.SetBool("isButtonSteppedOn", false);
         anim.SetBool("isPlayerStayOnButton", false);
     }
-
+    //Start moving the points in the array of points set in the game
     public void InitMovingPlatform(Vector3 spawnPosition, Vector3[] movingPoint)
     {
         GameObject movingGO = Instantiate(movingPlatformObj);
         movingGO.transform.position = spawnPosition;
-        movingGO.GetComponent<MovingPlatform>().InitMoving(movingPoint);
+        movingGO.GetComponent<MovingPlatform>().InitMoving(movingPoint);       //Moving the platform
     }
 }
