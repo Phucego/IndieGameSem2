@@ -9,10 +9,15 @@ public class InputSystem : MonoBehaviour
     Animator anim;
     Rigidbody2D rb2d;
     public float jumpPower, moveSpeed, horizontal, jumpTime, groundCheckRadius;
-    public bool  isJumping, isFacingRight, isInteractButtonPressed;
-    public LayerMask platformLayer;
-    public Transform groundChecking;
+
     private bool isGrounded;
+    public bool  isJumping, isFacingRight, isInteractButtonPressed;
+
+    public LayerMask platformLayer;
+
+    public Transform groundChecking;
+    [SerializeField] private Transform grabDetectPos, boxHoldingPos;
+    
     private float jumpTimeCounter;
     Vector2 playerMovementDir = Vector2.zero, movementInput;
 
@@ -20,10 +25,13 @@ public class InputSystem : MonoBehaviour
     //Input actions
     public InputAction playerControls;
     // Start is called before the first frame update
+
+    SpriteRenderer sr;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -88,38 +96,33 @@ public class InputSystem : MonoBehaviour
         Time.timeScale = 0f;
         SceneManager.LoadScene("PauseScene");
     }
-
-
-    //If the player is at the ground
     
-    void FlipCharacter()    //flipping character function
-    {
-        isFacingRight = !isFacingRight;
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1f;
-        transform.localScale = localScale;
-    }
-
-    void FlippingDirections()   //function deciding whether the character will flip or not
-    {
-        if (!isFacingRight && horizontal > 0f)
-        {
-            FlipCharacter();
-        }
-        else if (isFacingRight && horizontal < 0f)
-        {
-            FlipCharacter();
-        }
-    }
     //PLAYER'S MOVEMENTS
 
     public void Movement()
     {
+        sr.flipX = !isFacingRight;
+        
         Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.velocity.y);   
         rb2d.velocity = playerVelocity;
-        
-        FlippingDirections();
-        
+        Debug.Log(playerVelocity);
+
+
+        //Flip the player sprite
+        if (playerVelocity.x > 0)
+        {
+            isFacingRight = false;
+            grabDetectPos.transform.localScale *= -1;
+            boxHoldingPos.transform.localScale *= -1;
+        }
+        else if(playerVelocity.x < 0)
+        {
+            isFacingRight = true;
+            grabDetectPos.transform.localScale *= -1;
+            boxHoldingPos.transform.localScale *= -1;
+        }
+
+       
     }
 
 

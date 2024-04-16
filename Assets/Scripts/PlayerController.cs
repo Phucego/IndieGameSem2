@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             instance = this;
-
         }
     }
 

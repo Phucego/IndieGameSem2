@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - WinCondition
+  - ObjToKillPlayer
+  - PushableObj
   layers:
   - Default
   - TransparentFX
@@ -40,4 +43,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 3669647889
+    locked: 0
+  - name: World
+    uniqueID: 2200878341
+    locked: 0
+  - name: Player
+    uniqueID: 1203373873
     locked: 0
