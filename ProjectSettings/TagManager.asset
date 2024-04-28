@@ -7,11 +7,14 @@ TagManager:
   - WinCondition
   - ObjToKillPlayer
   - PushableObj
+  - Coin
+  - Key
+  - Ladder
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Platform
