@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LevelSelectManager : MonoBehaviour
 {
-
-
     private Scene scene;
     [SerializeField] public List<GameObject> portals = new List<GameObject>();
 
@@ -13,7 +11,10 @@ public class LevelSelectManager : MonoBehaviour
     public enum LEVELS
     {
         //assign the levels to an integer
-        LEVELTUT = 1000, LEVEL1 = 1001, LEVEL2 = 1002, LEVEL3 = 1003
+        LEVELTUT = 1000, 
+        LEVEL1 = 1001, 
+        LEVEL2 = 1002, 
+        LEVEL3 = 1003
     }
     void LevelSelection()
     {
@@ -32,7 +33,7 @@ public class LevelSelectManager : MonoBehaviour
                 SceneManager.LoadScene(1003);
                 break;                
         }
-
+        
     }
 
 

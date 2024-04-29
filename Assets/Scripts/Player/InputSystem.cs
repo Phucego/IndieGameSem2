@@ -94,7 +94,7 @@ public class InputSystem : MonoBehaviour
         
         Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.velocity.y);   
         rb2d.velocity = playerVelocity;
-        Debug.Log(playerVelocity.x);
+
         //Flip the player sprite
         if (playerVelocity.x > 0)
         {
