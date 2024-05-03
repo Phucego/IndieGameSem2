@@ -11,20 +11,20 @@ public class LevelSelectManager : MonoBehaviour
     public enum LEVELS
     {
         //assign the levels to an integer
-        LEVELTUT = 1000, 
-        LEVEL1 = 1001, 
-        LEVEL2 = 1002, 
-        LEVEL3 = 1003
+        LEVELTUT,
+        LEVEL1,
+        LEVEL2,
+        LEVEL3 
     }
     void LevelSelection()
     {
         switch (levels)
         {
             case LEVELS.LEVELTUT:
-                SceneManager.LoadScene(1000);
+                SceneManager.LoadScene("Tutorial", LoadSceneMode.Additive);
                 break;
             case LEVELS.LEVEL1:
-                SceneManager.LoadScene(1001);
+                SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
                 break;
             case LEVELS.LEVEL2:
                 SceneManager.LoadScene(1002);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject key, coin;
-
+  
     public GameManager instance;
     public bool hasPickedKey;
     public int coinPicked;
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         hasPickedKey = false;
-        
+        //_cloudScript = GetComponent<Cloud>();
     }
 
     // Update is called once per frame
@@ -25,11 +25,12 @@ public class GameManager : MonoBehaviour
     {
         
     }
-    
+
     public void ChangeValueCoin(int CoinValue)
     {
         //Increase the coin counter by 1
         coinPicked += CoinValue;
     }
+    
     
 }

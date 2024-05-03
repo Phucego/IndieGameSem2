@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer sr;
 
     InputSystem _inputSystem;
+    private Rigidbody2D rb2d;
     private void Awake()
     {
         //If there is an instance and it is not the player, then delete
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _inputSystem = GetComponent<InputSystem>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
 
@@ -36,19 +38,28 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.name == "Water_Zone")
         {
-            GetComponent<SpriteRenderer>().color = new Color(0, 154, 194);
+            //When the player enters the water zone
+            GetComponent<SpriteRenderer>().color = new Color(0, 154, 194);  //turn the player to blue
             _inputSystem.moveSpeed = 2f;
-            _inputSystem.jumpPower = 1f;
-            Debug.Log("is in water");
+            _inputSystem.jumpPower = 5f;
+            rb2d.mass = 0.01f;
+            rb2d.gravityScale = 3f;
+            _inputSystem.groundCheckRadius = 20f;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        //When the player exit the water zone
         if(other.gameObject.name == "Water_Zone")
         {
-            GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-            
+            GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);    //default color
+            _inputSystem.moveSpeed = 7f;
+            _inputSystem.jumpPower = 25f;
+            rb2d.mass = 0.75f;
+            rb2d.gravityScale = 10f;
+            _inputSystem.groundCheckRadius = 0.3f;
+
         }
     }
 

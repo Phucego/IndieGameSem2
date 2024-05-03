@@ -9,7 +9,7 @@ public class InputSystem : MonoBehaviour
     Animator anim;
     Rigidbody2D rb2d;
     
-    private bool isGrounded;
+    public bool isGrounded;
     public bool  isJumping, isFacingRight, isInteractButtonPressed;
 
     public LayerMask platformLayer;
@@ -48,7 +48,7 @@ public class InputSystem : MonoBehaviour
     //Handle Jump inputs
     public void Jump(InputAction.CallbackContext ctx)
     {
-        isGrounded = Physics2D.OverlapCircle(groundChecking.position, groundCheckRadius, platformLayer);
+        isGrounded = Physics2D.OverlapCircle(groundChecking.transform.position, groundCheckRadius, platformLayer);
         if (isGrounded == true /*&& Input.GetKeyDown(KeyCode.Space)*/)
         {
             isJumping = true;
@@ -59,7 +59,6 @@ public class InputSystem : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space) && isJumping == true)
         {
-            
             if (jumpTimeCounter > 0)
             {
                 rb2d.velocity = Vector2.up * jumpPower;
