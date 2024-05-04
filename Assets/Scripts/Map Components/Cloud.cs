@@ -14,7 +14,7 @@ public class Cloud : MonoBehaviour
     private float shakePower, vibrateCount;
     public int vibration, randomness;
 
-    public SpriteRenderer _sr;
+    
     public BoxCollider2D _boxCollider2D;
     [SerializeField] private GameObject cloudobj;
     public Vector2 shakeStrength;
@@ -23,8 +23,7 @@ public class Cloud : MonoBehaviour
     private void Start()
     {
         DOTween.Init();
-        cloudobj = GetComponent<GameObject>();
-        _sr = GetComponent<SpriteRenderer>();
+        cloudobj = this.gameObject;
         _boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
@@ -32,26 +31,28 @@ public class Cloud : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            //When the player steps on the cloud, the cloud vibrates and dissolve in 1.5sec
             StartCoroutine(StartTimer());
             var direction = transform.position - other.transform.position;
             direction.y = 0;
             transform.DOComplete();
             gameObject.transform.DOShakePosition(dissolveTimer, shakeStrength.normalized, vibration, randomness);
-            StartCoroutine(RespawnCloud());
         }
     }
     
     IEnumerator StartTimer()
     {
         yield return new WaitForSeconds(dissolveTimer);
-        _sr.enabled = false;
-        _boxCollider2D.enabled = false; 
+        _boxCollider2D.enabled = false;
+        cloudobj.SetActive(false);
+        isCloudDestroyed = true;
     }
-    IEnumerator RespawnCloud()
+    //Access this in the game manager to respawn the clouds
+    public IEnumerator RespawnCloud()
     {
         yield return new WaitForSeconds(respawnCloudTimer);
         gameObject.SetActive(true);
-        _sr.enabled = true;
         _boxCollider2D.enabled = true;
+        isCloudDestroyed = false;
     }
 }
