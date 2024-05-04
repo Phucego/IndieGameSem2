@@ -8,24 +8,24 @@ public class InputSystem : MonoBehaviour
     //Player related
     Animator anim;
     Rigidbody2D rb2d;
-    
+
     public bool isGrounded;
-    public bool  isJumping, isFacingRight, isInteractButtonPressed;
+    public bool isJumping, isFacingRight, isInteractButtonPressed;
 
     public LayerMask platformLayer;
 
     public Transform groundChecking;
     [SerializeField] private Transform grabDetectPos, boxHoldingPos;
-    
+
     private float jumpTimeCounter;
     public float jumpPower, moveSpeed, horizontal, jumpTime, groundCheckRadius;
-    
+
     Vector2 playerMovementDir = Vector2.zero;
     ButtonScript jump;
     //Input actions
     public InputAction playerControls;
     // Start is called before the first frame update
-    
+
     SpriteRenderer sr;
     void Start()
     {
@@ -39,7 +39,7 @@ public class InputSystem : MonoBehaviour
     {
         //Reading values
         playerMovementDir = playerControls.ReadValue<Vector2>();
-        
+
     }
     private void FixedUpdate()      //handle physics
     {
@@ -55,7 +55,7 @@ public class InputSystem : MonoBehaviour
             jumpTimeCounter = jumpTime;
             rb2d.velocity = Vector2.up * jumpPower;
             //rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            
+
         }
         if (Input.GetKey(KeyCode.Space) && isJumping == true)
         {
@@ -70,40 +70,41 @@ public class InputSystem : MonoBehaviour
             }
             rb2d.velocity = Vector2.up * jumpPower;
         }
-        if(Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             isJumping = false;
         }
     }
-    
+
     public void CounterJump(InputAction.CallbackContext ctx)
     {
         rb2d.AddForce(-transform.up * jumpPower, ForceMode2D.Impulse);
     }
     public void PauseGame(InputAction.CallbackContext ctx)
     {
-        
+
     }
-    
+
     //PLAYER'S MOVEMENTS
 
     public void Movement()
     {
-        sr.flipX = isFacingRight;
-        
-        Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.velocity.y);   
+        //sr.flipX = isFacingRight;
+        sr.transform.localScale = new Vector3(isFacingRight ? Mathf.Abs(sr.transform.localScale.x) : -Mathf.Abs(sr.transform.localScale.x), sr.transform.localScale.y, sr.transform.localScale.z);
+
+        Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.velocity.y);
         rb2d.velocity = playerVelocity;
 
         //Flip the player sprite
         if (playerVelocity.x > 0)
         {
             isFacingRight = true;
-            
+
         }
-        else if(playerVelocity.x < 0)
+        else if (playerVelocity.x < 0)
         {
             isFacingRight = false;
-            //this.transform.localScale = new Vector3(-1, 1, 1);
+            
         }
 
         if (playerVelocity.x > 0 || playerVelocity.x < 0)
@@ -114,7 +115,7 @@ public class InputSystem : MonoBehaviour
         {
             anim.SetBool("isRunning", false);
         }
-        
+
     }
 
 
@@ -126,4 +127,6 @@ public class InputSystem : MonoBehaviour
     {
         playerControls.Disable();
     }
+
+
 }

@@ -220,5 +220,5 @@ Transform:
   - {fileID: 967283176963049153}
   - {fileID: 967283177057131542}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

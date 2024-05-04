@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour
   
     public GameManager instance;
     public bool hasPickedKey;
+    
     public int coinPicked;
-    Cloud _cloudScript;
+    
+    
+
     private void Awake()
     {
         instance = this;
@@ -17,14 +20,15 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         hasPickedKey = false;
-        _cloudScript = GetComponent<Cloud>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        RespawnCloud();
+        
     }
 
     public void ChangeValueCoin(int CoinValue)
@@ -33,12 +37,5 @@ public class GameManager : MonoBehaviour
         coinPicked += CoinValue;
     }
     
-    private void RespawnCloud()
-    {
-        if(_cloudScript.isCloudDestroyed)
-        {
-            StartCoroutine(_cloudScript.RespawnCloud());
-            Debug.Log("respawning cloud");
-        }    
-    }
+    
 }
