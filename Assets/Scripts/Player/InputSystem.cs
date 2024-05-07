@@ -95,6 +95,8 @@ public class InputSystem : MonoBehaviour
         Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.velocity.y);
         rb2d.velocity = playerVelocity;
 
+
+
         //Flip the player sprite
         if (playerVelocity.x > 0)
         {
@@ -110,10 +112,12 @@ public class InputSystem : MonoBehaviour
         if (playerVelocity.x > 0 || playerVelocity.x < 0)
         {
             anim.SetBool("isRunning", true);
+            
         }
         else
         {
             anim.SetBool("isRunning", false);
+            
         }
 
     }

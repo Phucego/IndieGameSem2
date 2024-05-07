@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IPickable 
 {
-    public void ObjectPickUp();
+    void ObjectPickUp(Transform boxHolderPos, Transform grabDetection);
+    void ObjectDrop(Transform boxHolderPos, Transform grabDetection);
 
 }

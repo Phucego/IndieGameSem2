@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 public class GrabItemController : MonoBehaviour
 {
     //Picking up objects variables
-    public Transform grabDectection, boxHolderPos;
+    public Transform grabDetection, boxHolderPos;
     public float rayDistance;
     [SerializeField] private bool isInteractButtonPressed;
     private GameObject grabbedObj;
+
+    
     //Player start picking up the obj
     public void Interaction(InputAction.CallbackContext ctx)
     {
@@ -16,7 +18,7 @@ public class GrabItemController : MonoBehaviour
         {
             //---- PICKING OBJECTS ---- \\
             //Shoot a ray to the right and check if there is a grabbable obj
-            RaycastHit2D grabCheck = Physics2D.Raycast(grabDectection.position, Vector2.right * transform.localScale, rayDistance);
+            RaycastHit2D grabCheck = Physics2D.Raycast(grabDetection.position, Vector2.right * transform.localScale, rayDistance);
             if (grabCheck.collider != null && grabCheck.collider.tag == "PushableObj")
             {
 
@@ -29,10 +31,17 @@ public class GrabItemController : MonoBehaviour
                 grabbedObj.transform.parent = boxHolderPos;
                 grabbedObj.transform.position = boxHolderPos.position;
 
-
+                /* if(grabCheck.collider.TryGetComponent(out IPickable pickableObjects))
+                 {
+                     pickableObjects.ObjectPickUp(boxHolderPos, grabDetection);
+                 }
+                 else
+                 {
+                     pickableObjects.ObjectDrop(boxHolderPos, grabDetection);
+                 }*/
             }
-
         }
+        //Dropping the item
         else
         {
             grabbedObj.transform.parent = null;
@@ -40,6 +49,7 @@ public class GrabItemController : MonoBehaviour
             grabbedObj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             grabbedObj.GetComponent<BoxCollider2D>().enabled = true;
             grabbedObj = null;
+
         }
 
     }
