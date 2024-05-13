@@ -50,7 +50,6 @@ public class CloudManager : MonoBehaviour
     IEnumerator StartTimer()
     {
         yield return new WaitForSeconds(dissolveTimer);
-       
         cloudobj.SetActive(false);
         _boxCol2d.enabled = false;
         isCloudDestroyed = true;

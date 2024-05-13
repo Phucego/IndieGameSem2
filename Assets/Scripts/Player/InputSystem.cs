@@ -54,7 +54,7 @@ public class InputSystem : MonoBehaviour
             isJumping = true;
             jumpTimeCounter = jumpTime;
             rb2d.velocity = Vector2.up * jumpPower;
-            //rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            
 
         }
         if (Input.GetKey(KeyCode.Space) && isJumping == true)
@@ -78,7 +78,7 @@ public class InputSystem : MonoBehaviour
 
     public void CounterJump(InputAction.CallbackContext ctx)
     {
-        rb2d.AddForce(-transform.up * jumpPower, ForceMode2D.Impulse);
+        
     }
     public void PauseGame(InputAction.CallbackContext ctx)
     {

@@ -6,6 +6,9 @@ public class PlayFootStepAudio : MonoBehaviour
 {
     public void PlayerSound()
     {
-        SoundManager.PlaySound(SoundType.FOOTSTEPS);
+        if (gameObject.CompareTag("GrassGround"))
+        {
+            SoundManager.PlaySound(SoundType.FOOTSTEPS);
+        }
     }
 }

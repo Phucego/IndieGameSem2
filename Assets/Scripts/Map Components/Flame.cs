@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Flame : MonoBehaviour
 {
     
@@ -10,6 +10,8 @@ public class Flame : MonoBehaviour
     [SerializeField] private GameObject respawnPoint;
     [SerializeField] private Animator transition;
     private float transitionTime = 1.4f;
+
+    private Scene scene;
     private void Start()
     {
         player = GameObject.Find("Player");
@@ -30,6 +32,7 @@ public class Flame : MonoBehaviour
         transition.SetTrigger("isDead");
         player.SetActive(false);
         player.transform.position = respawnPoint.transform.position;
+        
         yield return new WaitForSeconds(transitionTime / 2);
         player.SetActive(true);
     }
