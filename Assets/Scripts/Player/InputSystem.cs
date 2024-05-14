@@ -32,6 +32,7 @@ public class InputSystem : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        Time.timeScale = 0.6f;
     }
 
     // Update is called once per frame
@@ -39,7 +40,7 @@ public class InputSystem : MonoBehaviour
     {
         //Reading values
         playerMovementDir = playerControls.ReadValue<Vector2>();
-
+        Debug.Log(rb2d.velocity.y);
     }
     private void FixedUpdate()      //handle physics
     {
