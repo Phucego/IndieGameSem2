@@ -2,21 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class InputSystem : MonoBehaviour
 {
     //Player related
     Animator anim;
     Rigidbody2D rb2d;
+    CapsuleCollider2D _capsulecol2d;
 
+    //Booleans
     public bool isGrounded;
     public bool isJumping, isFacingRight, isInteractButtonPressed;
+    [SerializeField] private bool isCrouching;
+
 
     public LayerMask platformLayer;
 
     public Transform groundChecking;
     [SerializeField] private Transform grabDetectPos, boxHoldingPos;
 
+    //Floats
     private float jumpTimeCounter;
     public float jumpPower, moveSpeed, horizontal, jumpTime, groundCheckRadius;
 
@@ -24,6 +29,16 @@ public class InputSystem : MonoBehaviour
     ButtonScript jump;
     //Input actions
     public InputAction playerControls;
+    PlayerAnimationStates _animStates;
+
+    //ANIMATION STATES
+    //Only use const if the variable will not change and it is fixed
+    const string PLAYER_IDLE = "Player_Idle";
+    const string PLAYER_RUN = "Player_Run";
+    const string PLAYER_JUMP = "Player_Jump";
+    const string PLAYER_FALLING = "Player_Falling";
+    const string PLAYER_CROUCH = "Player_Crouch";
+
     // Start is called before the first frame update
 
     SpriteRenderer sr;
@@ -32,7 +47,11 @@ public class InputSystem : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        Time.timeScale = 0.6f;
+        _animStates = GetComponent<PlayerAnimationStates>();
+        _capsulecol2d = GetComponent<CapsuleCollider2D>();
+        Time.timeScale = 0.95f;
+
+
     }
 
     // Update is called once per frame
@@ -40,45 +59,42 @@ public class InputSystem : MonoBehaviour
     {
         //Reading values
         playerMovementDir = playerControls.ReadValue<Vector2>();
-        Debug.Log(rb2d.velocity.y);
+        
     }
     private void FixedUpdate()      //handle physics
     {
         Movement();
+        
     }
     //Handle Jump inputs
     public void Jump(InputAction.CallbackContext ctx)
     {
         isGrounded = Physics2D.OverlapCircle(groundChecking.transform.position, groundCheckRadius, platformLayer);
-        if (isGrounded == true /*&& Input.GetKeyDown(KeyCode.Space)*/)
+        
+        if (isGrounded && !isJumping)
         {
+           
+            rb2d.velocity = Vector2.up * jumpPower;
             isJumping = true;
-            jumpTimeCounter = jumpTime;
-            rb2d.velocity = Vector2.up * jumpPower;
             
-
         }
-        if (Input.GetKey(KeyCode.Space) && isJumping == true)
-        {
-            if (jumpTimeCounter > 0)
-            {
-                rb2d.velocity = Vector2.up * jumpPower;
-                jumpTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                isJumping = false;
-            }
-            rb2d.velocity = Vector2.up * jumpPower;
-        }
-        if (Input.GetKeyUp(KeyCode.Space))
+        else
         {
             isJumping = false;
         }
+        if(rb2d.velocity.y > 0)
+        {
+            _animStates.ChangeAnimStates(PLAYER_JUMP);
+        }
+      
+       
     }
 
-    public void CounterJump(InputAction.CallbackContext ctx)
+    public void Crouch(InputAction.CallbackContext ctx)
     {
+        Debug.Log("is holding crouch");
+        isCrouching = true;
+        _animStates.ChangeAnimStates(PLAYER_CROUCH);
         
     }
     public void PauseGame(InputAction.CallbackContext ctx)
@@ -112,13 +128,12 @@ public class InputSystem : MonoBehaviour
 
         if (playerVelocity.x > 0 || playerVelocity.x < 0)
         {
-            anim.SetBool("isRunning", true);
+            _animStates.ChangeAnimStates(PLAYER_RUN);
             
         }
         else
         {
-            anim.SetBool("isRunning", false);
-            
+            _animStates.ChangeAnimStates(PLAYER_IDLE);
         }
 
     }

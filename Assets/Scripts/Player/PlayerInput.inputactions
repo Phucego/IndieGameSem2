@@ -11,7 +11,7 @@
                     "id": "26b1746e-b5fd-4dd8-b5e4-0367717d4e8f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap",
+                    "interactions": "",
                     "initialStateCheck": true
                 },
                 {
@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Counter Jump",
+                    "name": "Crouch",
                     "type": "Button",
                     "id": "0789d96d-8bcc-464e-8f99-633f001af2d4",
                     "expectedControlType": "Button",
@@ -90,7 +90,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Counter Jump",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

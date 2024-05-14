@@ -15864,6 +15864,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 217679554}
     m_Modifications:
+    - target: {fileID: 7936194725756989120, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Crouch
+      objectReference: {fileID: 0}
     - target: {fileID: 7936194725756989121, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
       propertyPath: jumpPower
       value: 25
@@ -15886,7 +15890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936194725756989126, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -42.42
+      value: -43.38
       objectReference: {fileID: 0}
     - target: {fileID: 7936194725756989126, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15981,7 +15985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8117639439378752441, guid: 3b8021c89b6e0fd458ae98774482a934, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.6157265
+      value: 2.6557236
       objectReference: {fileID: 0}
     - target: {fileID: 8117639439378752441, guid: 3b8021c89b6e0fd458ae98774482a934, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16041,7 +16045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8117639440461157703, guid: 3b8021c89b6e0fd458ae98774482a934, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.6157265
+      value: 2.6557236
       objectReference: {fileID: 0}
     - target: {fileID: 8117639440461157703, guid: 3b8021c89b6e0fd458ae98774482a934, type: 3}
       propertyPath: m_LocalPosition.y
