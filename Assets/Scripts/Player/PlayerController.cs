@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
             _inputSystem.moveSpeed = 7f;
             _inputSystem.jumpPower = 25f;
             rb2d.mass = 0.75f;
-            rb2d.gravityScale = 10f;
+            rb2d.gravityScale = 8f;
             _inputSystem.groundCheckRadius = 0.3f;
 
         }

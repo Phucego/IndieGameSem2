@@ -60,6 +60,8 @@ public class InputSystem : MonoBehaviour
         //Reading values
         playerMovementDir = playerControls.ReadValue<Vector2>();
         
+        Debug.Log(rb2d.velocity.y);
+        
     }
     private void FixedUpdate()      //handle physics
     {
@@ -85,7 +87,13 @@ public class InputSystem : MonoBehaviour
         if(rb2d.velocity.y > 0)
         {
             _animStates.ChangeAnimStates(PLAYER_JUMP);
+            
         }
+        else if (rb2d.velocity.y < 0)
+        {
+            _animStates.ChangeAnimStates(PLAYER_FALLING);
+        }
+        
       
        
     }
@@ -128,13 +136,15 @@ public class InputSystem : MonoBehaviour
 
         if (playerVelocity.x > 0 || playerVelocity.x < 0)
         {
-            _animStates.ChangeAnimStates(PLAYER_RUN);
+            if (isGrounded)
+            {
+                _animStates.ChangeAnimStates(PLAYER_RUN);
+            }
             
         }
-        else
-        {
+       
             _animStates.ChangeAnimStates(PLAYER_IDLE);
-        }
+        
 
     }
 
