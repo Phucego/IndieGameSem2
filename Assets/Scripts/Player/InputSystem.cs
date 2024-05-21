@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,7 @@ public class InputSystem : MonoBehaviour
     CapsuleCollider2D _capsulecol2d;
 
     //Booleans
-    public bool isGrounded;
-    public bool isJumping, isFacingRight, isInteractButtonPressed;
+    public bool isJumping, isFacingRight, isInteractButtonPressed, isGrounded;
     [SerializeField] private bool isCrouching;
 
 
@@ -22,22 +22,21 @@ public class InputSystem : MonoBehaviour
     [SerializeField] private Transform grabDetectPos, boxHoldingPos;
 
     //Floats
-    private float jumpTimeCounter;
+    private float crouchMS, originalMS;
     public float jumpPower, moveSpeed, horizontal, jumpTime, groundCheckRadius;
+
+
+
 
     Vector2 playerMovementDir = Vector2.zero;
     ButtonScript jump;
     //Input actions
     public InputAction playerControls;
-    PlayerAnimationStates _animStates;
 
-    //ANIMATION STATES
-    //Only use const if the variable will not change and it is fixed
-    const string PLAYER_IDLE = "Player_Idle";
-    const string PLAYER_RUN = "Player_Run";
-    const string PLAYER_JUMP = "Player_Jump";
-    const string PLAYER_FALLING = "Player_Falling";
-    const string PLAYER_CROUCH = "Player_Crouch";
+    //Event Actions
+    public event Action GrabItem;
+    public event Action ChooseGate;
+    
 
     // Start is called before the first frame update
 
@@ -47,11 +46,13 @@ public class InputSystem : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        _animStates = GetComponent<PlayerAnimationStates>();
+       
         _capsulecol2d = GetComponent<CapsuleCollider2D>();
         Time.timeScale = 0.95f;
 
-
+        //Move speed adjustments for crouching
+        crouchMS = moveSpeed - 3;
+        originalMS = moveSpeed; 
     }
 
     // Update is called once per frame
@@ -59,8 +60,9 @@ public class InputSystem : MonoBehaviour
     {
         //Reading values
         playerMovementDir = playerControls.ReadValue<Vector2>();
-        
-        Debug.Log(rb2d.velocity.y);
+
+        Debug.Log(isGrounded);
+        //Debug.Log(isJumping);
         
     }
     private void FixedUpdate()      //handle physics
@@ -72,37 +74,45 @@ public class InputSystem : MonoBehaviour
     public void Jump(InputAction.CallbackContext ctx)
     {
         isGrounded = Physics2D.OverlapCircle(groundChecking.transform.position, groundCheckRadius, platformLayer);
-        
-        if (isGrounded && !isJumping)
+        var originalCapsuleSize = _capsulecol2d.size = new Vector2(1.33f, 2.06f);
+        if (isGrounded && !isCrouching)
         {
-           
             rb2d.velocity = Vector2.up * jumpPower;
             isJumping = true;
-            
+            isGrounded = false;
         }
         else
         {
+            isGrounded = true;
             isJumping = false;
         }
-        if(rb2d.velocity.y > 0)
-        {
-            _animStates.ChangeAnimStates(PLAYER_JUMP);
-            
-        }
-        else if (rb2d.velocity.y < 0)
-        {
-            _animStates.ChangeAnimStates(PLAYER_FALLING);
-        }
-        
-      
-       
-    }
 
+        //Exit crouching state
+        if (isCrouching)
+            isCrouching = false;
+        anim.SetBool("isCrouching", false);
+        _capsulecol2d.size = originalCapsuleSize;
+        moveSpeed = originalMS;
+
+        
+        
+    }
     public void Crouch(InputAction.CallbackContext ctx)
     {
-        Debug.Log("is holding crouch");
-        isCrouching = true;
-        _animStates.ChangeAnimStates(PLAYER_CROUCH);
+        //Start crouching
+        if(!isCrouching)
+        {
+            isCrouching = true;
+            anim.SetBool("isCrouching", true);
+            _capsulecol2d.size = new Vector2(1.33f, 1); //Set the size of the collider so that it is suitable for crouching
+            moveSpeed = crouchMS;   
+        }
+    }
+    public void Interaction(InputAction.CallbackContext ctx)
+    {
+        //Different functionalities of interactions
+        GrabItem?.Invoke();
+        ChooseGate?.Invoke();
         
     }
     public void PauseGame(InputAction.CallbackContext ctx)
@@ -114,13 +124,10 @@ public class InputSystem : MonoBehaviour
 
     public void Movement()
     {
-        //sr.flipX = isFacingRight;
         sr.transform.localScale = new Vector3(isFacingRight ? Mathf.Abs(sr.transform.localScale.x) : -Mathf.Abs(sr.transform.localScale.x), sr.transform.localScale.y, sr.transform.localScale.z);
 
         Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.velocity.y);
         rb2d.velocity = playerVelocity;
-
-
 
         //Flip the player sprite
         if (playerVelocity.x > 0)
@@ -131,24 +138,8 @@ public class InputSystem : MonoBehaviour
         else if (playerVelocity.x < 0)
         {
             isFacingRight = false;
-            
         }
-
-        if (playerVelocity.x > 0 || playerVelocity.x < 0)
-        {
-            if (isGrounded)
-            {
-                _animStates.ChangeAnimStates(PLAYER_RUN);
-            }
-            
-        }
-       
-            _animStates.ChangeAnimStates(PLAYER_IDLE);
-        
-
     }
-
-
     void OnEnable()
     {
         playerControls.Enable();
@@ -157,6 +148,4 @@ public class InputSystem : MonoBehaviour
     {
         playerControls.Disable();
     }
-
-
 }

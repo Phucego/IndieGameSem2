@@ -4,39 +4,32 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LevelSelectManager : MonoBehaviour
 {
-    private Scene scene;
-    [SerializeField] public List<GameObject> portals = new List<GameObject>();
+    public static LevelSelectManager instance;
 
-    LEVELS levels;
-    public enum LEVELS
+
+    private void Awake()
     {
-        //assign the levels to an integer
-        LEVELTUT,
-        LEVEL1,
-        LEVEL2,
-        LEVEL3 
-    }
-    void LevelSelection()
-    {
-        switch (levels)
+        //If there is an instance and it is not the player, then delete
+        if (instance != null && instance != this)
         {
-            case LEVELS.LEVELTUT:
-                SceneManager.LoadScene("Tutorial", LoadSceneMode.Additive);
-                break;
-            case LEVELS.LEVEL1:
-                SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
-                break;
-            case LEVELS.LEVEL2:
-                SceneManager.LoadScene(1002);
-                break;
-            case LEVELS.LEVEL3:
-                SceneManager.LoadScene(1003);
-                break;                
+            Destroy(this);
         }
-        
+        else
+        {
+            instance = this;
+        }
     }
 
 
 
+    private Scene scene;
+    [SerializeField] public List<GameObject> gates = new List<GameObject>();
 
+    public void OnGateSelected(GameObject go)
+    {
+        //Getting the level id
+        int levelIndex = gates.IndexOf(go);
+        Resources.Load<GameObject>("Level_" + levelIndex);
+    }
 }
+

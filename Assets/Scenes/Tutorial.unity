@@ -5366,6 +5366,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7936194725756989126, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
   m_PrefabInstance: {fileID: 7936194725518642605}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &869065585 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7936194725756989121, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+  m_PrefabInstance: {fileID: 7936194725518642605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869065575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2549b6b804d42c5478d21ce07f6abd6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &870575248
 GameObject:
   m_ObjectHideFlags: 0
@@ -15865,17 +15876,33 @@ PrefabInstance:
     m_TransformParent: {fileID: 217679554}
     m_Modifications:
     - target: {fileID: 7936194725756989120, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 869065585}
+    - target: {fileID: 7936194725756989120, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Crouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936194725756989120, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputSystem, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7936194725756989121, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
       propertyPath: jumpPower
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7936194725756989121, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: isGrounded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936194725756989121, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
       propertyPath: groundChecking
       value: 
       objectReference: {fileID: 1931528422}
+    - target: {fileID: 7936194725756989121, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: groundCheckRadius
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7936194725756989125, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
       propertyPath: m_Mass
       value: 0.75
@@ -15953,9 +15980,29 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7936194725756989148, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: rayDistance
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936194725756989148, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
       propertyPath: grabDetection
       value: 
       objectReference: {fileID: 568450791}
+    - target: {fileID: 7936194725756989148, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: _inputSystemObserve
+      value: 
+      objectReference: {fileID: 869065585}
+    - target: {fileID: 7936194725943946531, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.043
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936194725943946531, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.087
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936194725943946531, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7936194726546370746, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.08
@@ -15964,7 +16011,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3103326706076939252, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
 --- !u!1001 &8117639439961222599

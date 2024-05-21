@@ -167,7 +167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a6227119fac514abb60c964fb28f7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portals: []
+  gates:
+  - {fileID: 217675406}
+  - {fileID: 840578758}
+  - {fileID: 1058656912}
+  - {fileID: 67135485}
 --- !u!1 &67135485
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,8 +182,9 @@ GameObject:
   m_Component:
   - component: {fileID: 67135486}
   - component: {fileID: 67135487}
+  - component: {fileID: 67135488}
   m_Layer: 0
-  m_Name: Level3_Portal
+  m_Name: Level_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,6 +258,43 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &67135488
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67135485}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.875, y: 2}
+    newSize: {x: 1.875, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.875, y: 2}
+  m_EdgeRadius: 0
+--- !u!114 &121666275 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7936194725756989121, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+  m_PrefabInstance: {fileID: 649812517}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2549b6b804d42c5478d21ce07f6abd6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &156436327
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,8 +389,9 @@ GameObject:
   m_Component:
   - component: {fileID: 217675408}
   - component: {fileID: 217675407}
+  - component: {fileID: 217675409}
   m_Layer: 0
-  m_Name: TutorialLevel_Portal
+  m_Name: Level_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,6 +465,32 @@ Transform:
   m_Father: {fileID: 1450348648}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &217675409
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217675406}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.875, y: 2}
+    newSize: {x: 1.875, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.875, y: 2}
+  m_EdgeRadius: 0
 --- !u!1 &320258654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,6 +1317,26 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5744324165191999905, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: circleRadius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936194725756989120, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 121666275}
+    - target: {fileID: 7936194725756989120, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Interaction
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936194725756989120, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Crouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936194725756989120, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputSystem, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7936194725756989121, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
       propertyPath: groundChecking
       value: 
@@ -1296,11 +1385,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7936194725756989127, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7936194725756989130, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7936194725756989148, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: rayDistance
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936194725756989148, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: grabDetection
+      value: 
+      objectReference: {fileID: 2137238525}
+    - target: {fileID: 7936194725756989148, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+      propertyPath: _inputSystemObserve
+      value: 
+      objectReference: {fileID: 121666275}
+    m_RemovedComponents:
+    - {fileID: 3103326706076939252, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
 --- !u!1 &840578758
@@ -1313,8 +1419,9 @@ GameObject:
   m_Component:
   - component: {fileID: 840578759}
   - component: {fileID: 840578760}
+  - component: {fileID: 840578761}
   m_Layer: 0
-  m_Name: Level1_Portal
+  m_Name: Level_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1388,6 +1495,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &840578761
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840578758}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.875, y: 2}
+    newSize: {x: 1.875, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.875, y: 2}
+  m_EdgeRadius: 0
 --- !u!1 &891457552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,8 +1661,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1058656913}
   - component: {fileID: 1058656914}
+  - component: {fileID: 1058656915}
   m_Layer: 0
-  m_Name: Level2_Portal
+  m_Name: Level_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1603,6 +1737,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1058656915
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058656912}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.875, y: 2}
+    newSize: {x: 1.875, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.875, y: 2}
+  m_EdgeRadius: 0
 --- !u!1 &1176767928
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,7 +2318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1450348648}
   m_Layer: 0
-  m_Name: Portals
+  m_Name: Gates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2331,3 +2491,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &2137238525 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7936194727126834443, guid: fc95e47903b96524991415b7eb6f23fb, type: 3}
+  m_PrefabInstance: {fileID: 649812517}
+  m_PrefabAsset: {fileID: 0}

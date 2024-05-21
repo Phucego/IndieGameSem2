@@ -7,18 +7,22 @@ public class PlayerController : MonoBehaviour
     // Singleton
     public static PlayerController instance;
 
-    private GameObject waterZone;
-    
+    private GameObject waterZone, currentGate;
+
+
     Scene scene;
 
     SpriteRenderer sr;
 
     InputSystem _inputSystem;
     private Rigidbody2D rb2d;
+
+    private float circleRadius;
+
     private void Awake()
     {
         //If there is an instance and it is not the player, then delete
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(this);
         }
@@ -36,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "Water_Zone")
+        if (collision.gameObject.name == "Water_Zone")
         {
             //When the player enters the water zone
             GetComponent<SpriteRenderer>().color = new Color(0, 154, 194);  //turn the player to blue
@@ -51,7 +55,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         //When the player exit the water zone
-        if(other.gameObject.name == "Water_Zone")
+        if (other.gameObject.name == "Water_Zone")
         {
             GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);    //default color
             _inputSystem.moveSpeed = 7f;
@@ -63,5 +67,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
 
 }

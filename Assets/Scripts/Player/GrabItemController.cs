@@ -10,9 +10,29 @@ public class GrabItemController : MonoBehaviour
     [SerializeField] private bool isInteractButtonPressed;
     private GameObject grabbedObj;
 
-    
+    [SerializeField] private InputSystem _inputSystemObserve;
+
+    #region Observer Pattern
+    private void Awake()
+    {
+        if(_inputSystemObserve != null)
+        {
+            _inputSystemObserve.GrabItem += GrabbingItem; 
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_inputSystemObserve != null)
+        {
+            _inputSystemObserve.GrabItem -= GrabbingItem;
+        }
+    }
+    #endregion
+
+
     //Player start picking up the obj
-    public void Interaction(InputAction.CallbackContext ctx)
+    public void GrabbingItem()
     {
         if (grabbedObj == null)
         {
@@ -31,14 +51,7 @@ public class GrabItemController : MonoBehaviour
                 grabbedObj.transform.parent = boxHolderPos;
                 grabbedObj.transform.position = boxHolderPos.position;
 
-                /* if(grabCheck.collider.TryGetComponent(out IPickable pickableObjects))
-                 {
-                     pickableObjects.ObjectPickUp(boxHolderPos, grabDetection);
-                 }
-                 else
-                 {
-                     pickableObjects.ObjectDrop(boxHolderPos, grabDetection);
-                 }*/
+                
             }
         }
         //Dropping the item
@@ -53,10 +66,5 @@ public class GrabItemController : MonoBehaviour
         }
 
     }
-    //When the player releases the obj
-    public void CancelInteract(InputAction.CallbackContext ctx)
-    {
-       
-
-    }
+   
 }
