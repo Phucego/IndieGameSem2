@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GateHandler : MonoBehaviour
 {
-    InputSystem _inputSystemObserve;
+    /*InputSystem _inputSystemObserve;
 
     [SerializeField] private GameObject currentGate;
     [SerializeField] private float circleRadius;
@@ -52,5 +52,5 @@ public class GateHandler : MonoBehaviour
         {
             return;
         }
-    }
+    }*/
 }
