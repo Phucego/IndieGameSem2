@@ -179,6 +179,16 @@ public class InputSystem : MonoBehaviour
             anim.SetBool("isRunning", false);
             
         }
+        //TODO: Check for crouch walk animation
+        if (playerVelocity.x > 0 || playerVelocity.x < 0 && isCrouching)
+        {
+            anim.SetBool("isCrouchWalking", true);
+            
+        }
+        else
+        {
+            anim.SetBool("isCrouchWalking", false);
+        }
     }
 
     void OnEnable()
