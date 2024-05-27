@@ -74,6 +74,9 @@ public class InputSystem : MonoBehaviour
     {
         Movement();
 
+        //TODO: Check velocity for animation
+        anim.SetFloat("YAxisVelocity", rb2d.velocity.y);
+        anim.SetFloat("ToIdleState", rb2d.velocity.y);
     }
 
     //Handle Jump inputs
@@ -87,14 +90,29 @@ public class InputSystem : MonoBehaviour
         if (!isCrouching && !isJumping && groundCheckCircle)
         {
             rb2d.velocity = Vector2.up * jumpPower;
-            isJumping = true;
             isGrounded = false;
+           
+        }
+        
+        //TODO: Check if it is jumping or falling
+        if(!isGrounded && isJumping && !isFalling && rb2d.velocity.y > 0)
+        {
+            isJumping = true;
+            isFalling = false;
+            
+        }
+        else if(!isGrounded && !isJumping && isFalling && rb2d.velocity.y < 0)
+        {
+            isJumping = false;
+            isFalling = true;
+
         }
         else
         {
-            isFalling = true;
-            isJumping = false;
             isGrounded = true;
+            isJumping = false;
+            isFalling = false;
+            
         }
         //TODO: Exit the crouching state
         if (isCrouching)
@@ -155,6 +173,7 @@ public class InputSystem : MonoBehaviour
         else
         {
             anim.SetBool("isRunning", false);
+            
         }
     }
 
