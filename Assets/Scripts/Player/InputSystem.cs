@@ -84,14 +84,13 @@ public class InputSystem : MonoBehaviour
     {
         //TODO: Check if the player is on the ground, then jump
         groundCheckCircle = Physics2D.OverlapCircle(groundChecking.transform.position, groundCheckRadius, platformLayer);
-        var originalCapsuleSize = _capsulecol2d.size = new Vector2(1.33f, 2.06f);
+        
         
         //TODO: If all of these conditions are met, the player can jump
         if (!isCrouching && !isJumping && groundCheckCircle)
         {
             rb2d.velocity = Vector2.up * jumpPower;
             isGrounded = false;
-           
         }
         
         //TODO: Check if it is jumping or falling
@@ -99,31 +98,27 @@ public class InputSystem : MonoBehaviour
         {
             isJumping = true;
             isFalling = false;
-            
         }
         else if(!isGrounded && !isJumping && isFalling && rb2d.velocity.y < 0)
         {
             isJumping = false;
             isFalling = true;
-
+            
         }
         else
         {
             isGrounded = true;
             isJumping = false;
             isFalling = false;
-            
         }
-        //TODO: Exit the crouching state
-        if (isCrouching)
-            isCrouching = false;
-        anim.SetBool("isCrouching", false);
-        _capsulecol2d.size = originalCapsuleSize;
-        moveSpeed = originalMS;
+       
+        
+       
     }
 
     public void Crouch(InputAction.CallbackContext ctx)
     {
+        var originalCapsuleSize = _capsulecol2d.size = new Vector2(1.33f, 2.06f);
         //Start crouching
         if (!isCrouching)
         {
@@ -131,6 +126,15 @@ public class InputSystem : MonoBehaviour
             anim.SetBool("isCrouching", true);
             _capsulecol2d.size = new Vector2(1.33f, 1); //Set the size of the collider so that it is suitable for crouching
             moveSpeed = crouchMS;
+        }
+        else
+        {
+            //TODO: Exit the crouching state
+            if (isCrouching)
+                isCrouching = false;
+            anim.SetBool("isCrouching", false);
+            _capsulecol2d.size = originalCapsuleSize;
+            moveSpeed = originalMS;
         }
     }
 
@@ -157,14 +161,14 @@ public class InputSystem : MonoBehaviour
         rb2d.velocity = playerVelocity;
 
         
-        //Flip the player sprite
-        if (playerVelocity.x > 0)
+        //TODO: The player can only play animation when on the ground, if not moving then start idle anim
+        if (playerVelocity.x > 0 && !isJumping && !isFalling)
         {
             isFacingRight = true;
             anim.SetBool("isRunning", true);
 
         }
-        else if (playerVelocity.x < 0)
+        else if (playerVelocity.x < 0 && !isJumping && !isFalling)
         {
             isFacingRight = false;
             anim.SetBool("isRunning", true);

@@ -42,7 +42,7 @@ Transform:
   - {fileID: 7936194727126834443}
   - {fileID: 7936194726546370746}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0.751, y: 0, z: 0}
 --- !u!212 &7936194725756989127
 SpriteRenderer:
@@ -148,7 +148,8 @@ MonoBehaviour:
   isJumping: 0
   isFacingRight: 0
   isInteractButtonPressed: 0
-  isGrounded: 0
+  isGrounded: 1
+  isFalling: 0
   isCrouching: 0
   platformLayer:
     serializedVersion: 2
@@ -156,7 +157,7 @@ MonoBehaviour:
   groundChecking: {fileID: 7936194725943946531}
   grabDetectPos: {fileID: 7936194727126834443}
   boxHoldingPos: {fileID: 7936194726546370746}
-  jumpPower: 30
+  jumpPower: 25
   moveSpeed: 7
   horizontal: 1
   jumpTime: 0.35
@@ -251,8 +252,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c6cffab3c6346409a773f7b8907cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentGate: {fileID: 0}
-  circleRadius: 0
 --- !u!114 &7936194725756989150
 MonoBehaviour:
   m_ObjectHideFlags: 0
