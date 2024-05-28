@@ -51,7 +51,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "CancelInteract",
+                    "name": "WallClimb",
                     "type": "Button",
                     "id": "0014ae24-cf2d-4d73-9dd0-898535555b5f",
                     "expectedControlType": "Button",
@@ -145,7 +145,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CancelInteract",
+                    "action": "WallClimb",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

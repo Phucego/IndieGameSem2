@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7936194725756989151}
   - component: {fileID: 7936194725756989121}
   - component: {fileID: 7936194725756989149}
+  - component: {fileID: 6603790068451087908}
   - component: {fileID: 7936194725756989148}
   - component: {fileID: 5744324165191999905}
   - component: {fileID: 7936194725756989150}
@@ -151,6 +152,7 @@ MonoBehaviour:
   isGrounded: 1
   isFalling: 0
   isCrouching: 0
+  isTurning: 0
   platformLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -223,6 +225,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc42cbc97a695041950f5d79a6d0568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6603790068451087908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7936194725756989130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4f10f537872e246b67993c51797b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullHeart: {fileID: 1693396676, guid: d09407e92ed13ea4db20f30c1b6b244f, type: 3}
+  emptyHeart: {fileID: 21300000, guid: a8860bc075767e54baff6dfbd7e13464, type: 3}
 --- !u!114 &7936194725756989148
 MonoBehaviour:
   m_ObjectHideFlags: 0

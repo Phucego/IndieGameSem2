@@ -14,7 +14,7 @@ public class InputSystem : MonoBehaviour
 
     //Booleans
     public bool isJumping, isFacingRight, isInteractButtonPressed, isGrounded, isFalling;
-    [SerializeField] private bool isCrouching;
+    [SerializeField] private bool isCrouching, isTurning;
 
 
     public LayerMask platformLayer;
@@ -37,9 +37,8 @@ public class InputSystem : MonoBehaviour
     public InputAction playerControls;
 
     //Event Actions
-    public event Action GrabItem;
-    public event Action ChooseGate;
-
+    public event Action GrabItem_Event;
+    public event Action ChooseGate_Event;
 
     private Collider2D groundCheckCircle;
 
@@ -77,6 +76,8 @@ public class InputSystem : MonoBehaviour
         //TODO: Check velocity for animation
         anim.SetFloat("YAxisVelocity", rb2d.velocity.y);
         anim.SetFloat("ToIdleState", rb2d.velocity.y);
+
+
     }
 
     //Handle Jump inputs
@@ -84,26 +85,26 @@ public class InputSystem : MonoBehaviour
     {
         //TODO: Check if the player is on the ground, then jump
         groundCheckCircle = Physics2D.OverlapCircle(groundChecking.transform.position, groundCheckRadius, platformLayer);
-        
-        
+
+
         //TODO: If all of these conditions are met, the player can jump
         if (!isCrouching && !isJumping && groundCheckCircle)
         {
             rb2d.velocity = Vector2.up * jumpPower;
             isGrounded = false;
         }
-        
+
         //TODO: Check if it is jumping or falling
-        if(!isGrounded && isJumping && !isFalling && rb2d.velocity.y > 0)
+        if (!isGrounded && isJumping && !isFalling && rb2d.velocity.y > 0)
         {
             isJumping = true;
             isFalling = false;
         }
-        else if(!isGrounded && !isJumping && isFalling && rb2d.velocity.y < 0)
+        else if (!isGrounded && !isJumping && isFalling && rb2d.velocity.y < 0)
         {
             isJumping = false;
             isFalling = true;
-            
+
         }
         else
         {
@@ -111,9 +112,9 @@ public class InputSystem : MonoBehaviour
             isJumping = false;
             isFalling = false;
         }
-       
-        
-       
+
+
+
     }
 
     public void Crouch(InputAction.CallbackContext ctx)
@@ -141,8 +142,8 @@ public class InputSystem : MonoBehaviour
     public void Interaction(InputAction.CallbackContext ctx)
     {
         //Different functionalities of interactions
-        GrabItem?.Invoke();
-        ChooseGate?.Invoke();
+        GrabItem_Event?.Invoke();
+        ChooseGate_Event?.Invoke();
 
     }
 
@@ -160,30 +161,32 @@ public class InputSystem : MonoBehaviour
         Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.velocity.y);
         rb2d.velocity = playerVelocity;
 
-        
+
         //TODO: The player can only play animation when on the ground, if not moving then start idle anim
-        if (playerVelocity.x > 0 && !isJumping && !isFalling)
+        if (playerVelocity.x > 0 && !isJumping && !isFalling && !isTurning)
         {
             isFacingRight = true;
             anim.SetBool("isRunning", true);
 
+            
+
+
         }
-        else if (playerVelocity.x < 0 && !isJumping && !isFalling)
+        else if (playerVelocity.x < 0 && !isJumping && !isFalling && !isTurning)
         {
             isFacingRight = false;
             anim.SetBool("isRunning", true);
-            
+           
         }
         else
         {
             anim.SetBool("isRunning", false);
-            
         }
         //TODO: Check for crouch walk animation
         if (playerVelocity.x > 0 || playerVelocity.x < 0 && isCrouching)
         {
             anim.SetBool("isCrouchWalking", true);
-            
+
         }
         else
         {
@@ -200,6 +203,5 @@ public class InputSystem : MonoBehaviour
     {
         playerControls.Disable();
     }
-   
 
 }

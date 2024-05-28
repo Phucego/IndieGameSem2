@@ -12,12 +12,14 @@ public class GrabItemController : MonoBehaviour
 
     [SerializeField] private InputSystem _inputSystemObserve;
 
+    private float boxHoldingMS = 4.5f, originalMS;
+
     #region Observer Pattern
     private void Awake()
     {
         if(_inputSystemObserve != null)
         {
-            _inputSystemObserve.GrabItem += GrabbingItem; 
+            _inputSystemObserve.GrabItem_Event += GrabbingItem; 
         }
     }
 
@@ -25,12 +27,15 @@ public class GrabItemController : MonoBehaviour
     {
         if (_inputSystemObserve != null)
         {
-            _inputSystemObserve.GrabItem -= GrabbingItem;
+            _inputSystemObserve.GrabItem_Event -= GrabbingItem;
         }
     }
     #endregion
 
-
+    private void Start()
+    {
+        originalMS = _inputSystemObserve.moveSpeed;
+    }
     //Player start picking up the obj
     public void GrabbingItem()
     {
@@ -50,7 +55,7 @@ public class GrabItemController : MonoBehaviour
                 grabbedObj.GetComponent<BoxCollider2D>().enabled = false;
                 grabbedObj.transform.parent = boxHolderPos;
                 grabbedObj.transform.position = boxHolderPos.position;
-
+                _inputSystemObserve.moveSpeed = boxHoldingMS;
                 
             }
         }
@@ -62,7 +67,7 @@ public class GrabItemController : MonoBehaviour
             grabbedObj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             grabbedObj.GetComponent<BoxCollider2D>().enabled = true;
             grabbedObj = null;
-
+            _inputSystemObserve.moveSpeed = originalMS;
         }
 
     }
