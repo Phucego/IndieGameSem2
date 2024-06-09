@@ -69,7 +69,6 @@ public class GrabItemController : MonoBehaviour
             grabbedObj = null;
             _inputSystemObserve.moveSpeed = originalMS;
         }
-
     }
    
 }

@@ -6,7 +6,8 @@ public class LevelSelectManager : MonoBehaviour
 {
     public static LevelSelectManager instance;
 
-
+    private Scene scene;
+    
     private void Awake()
     {
         //If there is an instance and it is not the player, then delete
@@ -19,16 +20,13 @@ public class LevelSelectManager : MonoBehaviour
             instance = this;
         }
     }
-
-
-
-    private Scene scene;
-    [SerializeField] public List<GameObject> gates = new List<GameObject>();
+    public List<GameObject> gates = new List<GameObject>();
 
     public void OnGateSelected(GameObject go)
     {
         //Getting the level id
         int levelIndex = gates.IndexOf(go);
+        SceneManager.LoadScene("Level_" + levelIndex);
         Resources.Load<GameObject>("Level_" + levelIndex);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    public static int health = 3;
+    [SerializeField] private static int health = 3;
 
     public Image[] hearts;
 
@@ -18,6 +19,7 @@ public class HealthManager : MonoBehaviour
 
     private float knockbackPow = 3f;
 
+    [SerializeField] private Vector2 sourcePos;
     // Update is called once per frame
 
     private void Start()
@@ -46,12 +48,18 @@ public class HealthManager : MonoBehaviour
     }
  
 
-    public void DealDamage(int amount, Vector2 sourcePos)
+    public void DealDamage(int amount)
     {
         health -= amount;
         
-        Vector2 knockbackDir = (rb2d.position - sourcePos).normalized;
-        rb2d.AddForce(knockbackDir * knockbackPow, ForceMode2D.Impulse);
+       
     }
-   
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.name.Contains("Enemy"))
+        {
+            var knockbackDir = (rb2d.position - sourcePos).normalized;
+            rb2d.AddForce(knockbackDir * knockbackPow, ForceMode2D.Impulse);
+        }
+    }
 }

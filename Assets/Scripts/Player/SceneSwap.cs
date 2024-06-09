@@ -9,7 +9,7 @@ public class SceneSwap : MonoBehaviour
     
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        /*DontDestroyOnLoad(this.gameObject);*/
         scene = SceneManager.GetActiveScene();
     }
     private void OnCollisionEnter2D(Collision2D collision)
