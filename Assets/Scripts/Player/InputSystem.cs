@@ -27,7 +27,7 @@ public class InputSystem : MonoBehaviour
     public float jumpPower, moveSpeed, horizontal, jumpTime, groundCheckRadius;
 
 
-
+    
 
     Vector2 playerMovementDir = Vector2.zero;
 
@@ -64,7 +64,7 @@ public class InputSystem : MonoBehaviour
         //Reading values
         playerMovementDir = playerControls.ReadValue<Vector2>();
 
-        Debug.Log(isGrounded);
+        //Debug.Log(isGrounded);
         //Debug.Log(isJumping);
 
     }
@@ -144,6 +144,7 @@ public class InputSystem : MonoBehaviour
         //Different functionalities of interactions
         GrabItem_Event?.Invoke();
         ChooseGate_Event?.Invoke();
+        Debug.Log("interacted");
 
     }
 
@@ -167,10 +168,6 @@ public class InputSystem : MonoBehaviour
         {
             isFacingRight = true;
             anim.SetBool("isRunning", true);
-
-            
-
-
         }
         else if (playerVelocity.x < 0 && !isJumping && !isFalling && !isTurning)
         {

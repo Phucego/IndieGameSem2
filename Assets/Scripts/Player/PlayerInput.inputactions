@@ -16,12 +16,12 @@
                 },
                 {
                     "name": "Interaction",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "7aa3359f-421c-4bc7-835f-b053736c634e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Crouch",

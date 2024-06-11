@@ -29,10 +29,11 @@ public class Flame : MonoBehaviour
     //Prevent the player to continue while the transition is running
     IEnumerator RemovePlayerWhileTrans()
     {
+       
         transition.SetTrigger("isDead");
         player.SetActive(false);
         player.transform.position = respawnPoint.transform.position;
-        
+  
         yield return new WaitForSeconds(transitionTime / 2);
         player.SetActive(true);
     }

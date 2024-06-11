@@ -7,7 +7,7 @@ public class GrabItemController : MonoBehaviour
     //Picking up objects variables
     public Transform grabDetection, boxHolderPos;
     public float rayDistance;
-    [SerializeField] private bool isInteractButtonPressed;
+ 
     private GameObject grabbedObj;
 
     [SerializeField] private InputSystem _inputSystemObserve;

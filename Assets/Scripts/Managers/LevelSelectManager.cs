@@ -26,8 +26,11 @@ public class LevelSelectManager : MonoBehaviour
     {
         //Getting the level id
         int levelIndex = gates.IndexOf(go);
-        SceneManager.LoadScene("Level_" + levelIndex);
-        Resources.Load<GameObject>("Level_" + levelIndex);
+        if(levelIndex < 0)
+        {
+            return;
+        }
+        
     }
 }
 

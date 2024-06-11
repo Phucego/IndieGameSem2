@@ -11,12 +11,11 @@ public class GateHandler : MonoBehaviour
 
     [SerializeField] private GameObject currentGate;
     [SerializeField] private float circleRadius;
+    [SerializeField] private LayerMask m_GateMask;
 
     RaycastHit2D gateCheck;
-
-    public Image[] _buttonIndicator;
-
-    private bool _canPressGate;
+    
+  
     #region Observer Pattern
     private void Awake()
     {
@@ -35,39 +34,19 @@ public class GateHandler : MonoBehaviour
     }
 
     #endregion
-    private void Update()
-    {
-        OnGateOpened();
-    }
+
 
     public void OnGateOpened()
     {
-        gateCheck = Physics2D.CircleCast(transform.position, circleRadius, Vector2.one);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        _canPressGate = false;
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        _canPressGate = true;
-        if(gateCheck == currentGate && _canPressGate)
+        
+        gateCheck = Physics2D.CircleCast(transform.position, circleRadius, Vector2.one, 1000, m_GateMask);
+        if (gateCheck)
         {
-            LevelSelectManager.instance.OnGateSelected(currentGate);
+            currentGate = gateCheck.collider.gameObject;
+            if (gateCheck.collider.GetComponent<Gate_Handle>() != null)
+            {
+                gateCheck.collider.GetComponent<Gate_Handle>().OnLoadLevel();
+            }
         }
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(gateCheck != currentGate)
-        {
-            return;
-        }
-    }
-
-    /*void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(transform.transform.position, circleRadius);
-    }*/
 }
