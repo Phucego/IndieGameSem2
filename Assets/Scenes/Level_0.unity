@@ -4306,7 +4306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactIndicator: {fileID: 1960473312}
-  _inputSystemObserve: {fileID: 0}
+  _inputSystemObserve: {fileID: 869065585}
   tutText: {fileID: 1240116886}
 --- !u!222 &824599454
 CanvasRenderer:

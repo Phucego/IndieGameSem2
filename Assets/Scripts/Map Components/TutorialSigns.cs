@@ -9,6 +9,7 @@ public class TutorialSigns : MonoBehaviour
     [SerializeField] private InputSystem _inputSystemObserve;
     public TextMeshPro tutText;
 
+    private bool isInArea;
     #region Observer Pattern
     private void Awake()
     {
@@ -31,10 +32,10 @@ public class TutorialSigns : MonoBehaviour
         tutText.GetComponent<TextMeshPro>();
         tutText.enabled = false;
         interactIndicator.enabled = false;
+        
     }
     public void ActivateTutorialText()
     {
-        
         StartCoroutine(ActiveText());
     }
 
@@ -43,6 +44,7 @@ public class TutorialSigns : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             interactIndicator.enabled = true;
+            isInArea = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -50,13 +52,16 @@ public class TutorialSigns : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             interactIndicator.enabled = false;
+            isInArea = false;
         }
     }
     IEnumerator ActiveText()
     {
-        tutText.enabled = true;
-        yield return new WaitForSeconds(2f);
-        tutText.enabled = false;
-
+        if (isInArea)
+        {
+            tutText.enabled = true;
+            yield return new WaitForSeconds(2f);
+            tutText.enabled = false;
+        }
     }
 }

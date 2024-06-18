@@ -147,9 +147,11 @@ public class InputSystem : MonoBehaviour
         ChooseGate_Event?.Invoke();
         TutorialActive_Event?.Invoke();
 
-   /*     Debug.Log("interacted");
-        Debug.Log("EventChooseGate: " + ChooseGate_Event);
-        Debug.Log("EventGrabItem: " + GrabItem_Event);*/
+        /*     Debug.Log("interacted");
+             Debug.Log("EventChooseGate: " + ChooseGate_Event);
+             Debug.Log("EventGrabItem: " + GrabItem_Event);*/
+
+        Debug.Log(TutorialActive_Event);
 
     }
 
