@@ -39,6 +39,7 @@ public class InputSystem : MonoBehaviour
     //Event Actions
     public event Action GrabItem_Event;
     public event Action ChooseGate_Event;
+    public event Action TutorialActive_Event;
 
     private Collider2D groundCheckCircle;
 
@@ -148,7 +149,13 @@ public class InputSystem : MonoBehaviour
         //Different functionalities of interactions
         GrabItem_Event?.Invoke();
         ChooseGate_Event?.Invoke();
-        Debug.Log("interacted");
+        TutorialActive_Event?.Invoke();
+
+        /*     Debug.Log("interacted");
+             Debug.Log("EventChooseGate: " + ChooseGate_Event);
+             Debug.Log("EventGrabItem: " + GrabItem_Event);*/
+
+        Debug.Log(TutorialActive_Event);
 
     }
 

@@ -51,10 +51,7 @@ public class PlayerController : MonoBehaviour
             _inputSystem.groundCheckRadius = 20f;
         }
 
-        if(collision.gameObject.name.Contains("Tutorial_"))
-        {
-            TutorialTextManager.instance.ShowText();
-        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -70,10 +67,7 @@ public class PlayerController : MonoBehaviour
             _inputSystem.groundCheckRadius = 0.3f;
 
         }
-        if(other.gameObject.name.Contains("Tutorial_"))
-        {
-            TutorialTextManager.instance.DisableText();
-        }
+       
     }
 
     
