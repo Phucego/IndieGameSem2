@@ -27,7 +27,7 @@ public class InputSystem : MonoBehaviour
     public float jumpPower, moveSpeed, horizontal, jumpTime, groundCheckRadius;
 
 
-    
+    public GameObject pausePanel;
 
     Vector2 playerMovementDir = Vector2.zero;
 
@@ -56,6 +56,10 @@ public class InputSystem : MonoBehaviour
         //Move speed adjustments for crouching
         crouchMS = moveSpeed - 3;
         originalMS = moveSpeed;
+        
+        pausePanel = GameObject.Find("PausePanel");
+        
+        pausePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -151,6 +155,8 @@ public class InputSystem : MonoBehaviour
     public void PauseGame(InputAction.CallbackContext ctx)
     {
         //TODO: Pause the game when the Pause button on UI is pressed
+        pausePanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     //PLAYER'S MOVEMENTS
