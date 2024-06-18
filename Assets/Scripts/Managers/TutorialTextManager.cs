@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class TutorialTextManager : MonoBehaviour
 {
- 
+
     public static TutorialTextManager instance;
+
+    public GameObject tutText;
     private void Awake()
     {
         //If there is an instance and it is not the player, then delete
@@ -18,13 +20,23 @@ public class TutorialTextManager : MonoBehaviour
             instance = this;
         }
     }
-    public void ShowText()
+    private void Start()
     {
-        //gameObject.transform
+        tutText.SetActive(false);
     }
-    public void DisableText()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameObject.SetActive(false);
-
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            tutText.SetActive(true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            tutText.SetActive(false);
+        }
     }
 }
+
