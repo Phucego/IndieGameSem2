@@ -14,6 +14,7 @@ TagManager:
   - Signs
   - Ground
   - KillBat
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - UI
   - Platform
   - Gates
-  - 
+  - Wall
   - 
   - 
   - 

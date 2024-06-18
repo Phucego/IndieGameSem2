@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     private GameObject waterZone, currentGate;
-
+    public GameObject underwaterText;
 
     Scene scene;
 
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         _inputSystem = GetComponent<InputSystem>();
         rb2d = GetComponent<Rigidbody2D>();
+        underwaterText.SetActive(false);
     }
 
 
@@ -49,9 +50,8 @@ public class PlayerController : MonoBehaviour
             rb2d.mass = 0.01f;
             rb2d.gravityScale = 3f;
             _inputSystem.groundCheckRadius = 20f;
+            underwaterText.SetActive(true);
         }
-
-        
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -65,11 +65,8 @@ public class PlayerController : MonoBehaviour
             rb2d.mass = 0.75f;
             rb2d.gravityScale = 8f;
             _inputSystem.groundCheckRadius = 0.3f;
+            underwaterText.SetActive(false);
 
         }
-       
     }
-
-    
-
 }
