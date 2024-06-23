@@ -9,12 +9,14 @@ public class PauseMenuManager : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        AudioManager.Instance.PlaySoundEffect("ClickSound_SFX");
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
     }
 
     public void ResumeGame()
     {
+        AudioManager.Instance.PlaySoundEffect("ClickSound_SFX");
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
     }

@@ -20,7 +20,6 @@ public class EnemyScript : MonoBehaviour
        private Vector3 nextPoint;
        private bool isChasing = false;
        private bool movingRight = true;
-        
        private Animator anim;
        
        void Start()
@@ -29,19 +28,24 @@ public class EnemyScript : MonoBehaviour
            indicatorDetected.SetActive(false);
            indicatorPatrol.SetActive(true);
            anim = GetComponent<Animator>();
-           
-          
+           player = GameObject.Find("Player").transform;
+
        }
        void Update()
        {
            if (isChasing)
            {
+             
                ChasePlayer();
                indicatorDetected.SetActive(true);
+              
+              
+               
                indicatorPatrol.SetActive(false);
            }
            else
            {
+               
                Patrol();
                CheckForPlayer();
                indicatorDetected.SetActive(false);
@@ -63,15 +67,19 @@ public class EnemyScript : MonoBehaviour
        //TODO: Checking the distance of the player by calculating from the enemy's position
        void CheckForPlayer()
        {
+          
            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
            if (distanceToPlayer < detectionRange)
            {
                isChasing = true;
+               AudioManager.Instance.PlaySoundEffect("Detected_SFX");
            }
        }
         //TODO: Chase player state and logic
        void ChasePlayer()
        {
+           
+           
            transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
            hideCountdown = 10f;
            float distanceToPlayer = Vector3.Distance(transform.position, player.position);

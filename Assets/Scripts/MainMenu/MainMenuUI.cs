@@ -17,14 +17,15 @@ public class MainMenuUI : MonoBehaviour
 
     public void StartGame()
     {
+        AudioManager.Instance.PlaySoundEffect("ClickSound_SFX");
         isStartingGame = true;
         StartCoroutine(StartingGameDelay());
-
 
     }
 
     public void Quit()
     {
+        AudioManager.Instance.PlaySoundEffect("ClickSound_SFX");
         Application.Quit();
     }
 

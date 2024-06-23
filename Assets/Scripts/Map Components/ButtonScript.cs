@@ -23,20 +23,24 @@ public class ButtonScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        ;
         if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("PushableObj"))
         {
            
             anim.SetBool("isButtonSteppedOn", true);
+            AudioManager.Instance.PlaySoundEffect("Button_SFX");
             //Start moving the platform when the button is pressed
-            
-                movingPlatformScript.OnActivePlatform(true);
-            
+            Debug.Log("aaa");
+            movingPlatformScript.OnActivePlatform(true);
+           
+           
         }
     }
     //When the player is staying on the button
     private void OnCollisionStay2D(Collision2D collision)
     {
         anim.SetBool("isPlayerStayOnButton", true);
+        
 
     }
 

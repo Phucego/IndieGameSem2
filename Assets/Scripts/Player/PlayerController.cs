@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,8 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     private GameObject waterZone, currentGate;
-    public GameObject underwaterText;
-
+    
+    public bool isUnderWater;
     Scene scene;
 
     SpriteRenderer sr;
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         _inputSystem = GetComponent<InputSystem>();
         rb2d = GetComponent<Rigidbody2D>();
-        underwaterText.SetActive(false);
+        
     }
 
 
@@ -45,12 +46,15 @@ public class PlayerController : MonoBehaviour
         {
             //When the player enters the water zone
             GetComponent<SpriteRenderer>().color = new Color(0, 154, 194);  //turn the player to blue
+            
+            AudioManager.Instance.PlaySoundEffect("JumpWater_SFX");
+            
             _inputSystem.moveSpeed = 2f;
             _inputSystem.jumpPower = 5f;
             rb2d.mass = 0.01f;
             rb2d.gravityScale = 3f;
             _inputSystem.groundCheckRadius = 20f;
-            underwaterText.SetActive(true);
+            isUnderWater = true;
         }
     }
 
@@ -60,13 +64,23 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.name == "Water_Zone")
         {
             GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);    //default color
+            
             _inputSystem.moveSpeed = 7f;
             _inputSystem.jumpPower = 25f;
             rb2d.mass = 0.75f;
             rb2d.gravityScale = 8f;
             _inputSystem.groundCheckRadius = 0.3f;
-            underwaterText.SetActive(false);
+            isUnderWater = false;
+        }
+    }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.name.Contains("KillPlayer_"))
+        {
+            GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+            AudioManager.Instance.PlaySoundEffect("Hurt_SFX");   
+            KillPlayerManager.Instance.ResetLevel();
         }
     }
 }

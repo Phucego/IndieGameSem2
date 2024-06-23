@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -11,7 +12,8 @@ public class InputSystem : MonoBehaviour
     Animator anim;
     Rigidbody2D rb2d;
     CapsuleCollider2D _capsulecol2d;
-
+    
+    
     //Booleans
     public bool isJumping, isFacingRight, isInteractButtonPressed, isGrounded, isFalling;
     [SerializeField] private bool isCrouching, isTurning;
@@ -26,7 +28,9 @@ public class InputSystem : MonoBehaviour
     private float crouchMS, originalMS;
     public float jumpPower, moveSpeed, horizontal, jumpTime, groundCheckRadius;
 
+    private bool isTouchingWall;
 
+    
     public GameObject pausePanel;
 
     Vector2 playerMovementDir = Vector2.zero;
@@ -35,11 +39,14 @@ public class InputSystem : MonoBehaviour
 
     //Input actions
     public InputAction playerControls;
-
+    
     //Event Actions
     public event Action GrabItem_Event;
     public event Action ChooseGate_Event;
     public event Action TutorialActive_Event;
+    
+    
+    
 
     private Collider2D groundCheckCircle;
 
@@ -51,6 +58,7 @@ public class InputSystem : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
 
+       
         _capsulecol2d = GetComponent<CapsuleCollider2D>();
         Time.timeScale = 0.95f;
 
@@ -68,10 +76,7 @@ public class InputSystem : MonoBehaviour
     {
         //Reading values
         playerMovementDir = playerControls.ReadValue<Vector2>();
-
-        //Debug.Log(isGrounded);
-        //Debug.Log(isJumping);
-
+       
     }
 
     private void FixedUpdate() //handle physics
@@ -90,12 +95,16 @@ public class InputSystem : MonoBehaviour
     {
         //TODO: Check if the player is on the ground, then jump
         groundCheckCircle = Physics2D.OverlapCircle(groundChecking.transform.position, groundCheckRadius, platformLayer);
-
-
+        
         //TODO: If all of these conditions are met, the player can jump
         if (!isCrouching && !isJumping && groundCheckCircle)
         {
             rb2d.velocity = Vector2.up * jumpPower;
+            //TODO: Prevent the jumping sound effect to spam when player swims up
+            if (!PlayerController.instance.isUnderWater)
+            {
+                AudioManager.Instance.PlaySoundEffect("Jump_SFX");
+            }
             isGrounded = false;
         }
 
@@ -117,9 +126,6 @@ public class InputSystem : MonoBehaviour
             isJumping = false;
             isFalling = false;
         }
-
-
-
     }
 
     public void Crouch(InputAction.CallbackContext ctx)
@@ -150,19 +156,14 @@ public class InputSystem : MonoBehaviour
         GrabItem_Event?.Invoke();
         ChooseGate_Event?.Invoke();
         TutorialActive_Event?.Invoke();
-
-        /*     Debug.Log("interacted");
-             Debug.Log("EventChooseGate: " + ChooseGate_Event);
-             Debug.Log("EventGrabItem: " + GrabItem_Event);*/
-
-        Debug.Log(TutorialActive_Event);
-
+      
     }
 
     public void PauseGame(InputAction.CallbackContext ctx)
     {
         //TODO: Pause the game when the Pause button on UI is pressed
         pausePanel.SetActive(true);
+        AudioManager.Instance.PlaySoundEffect("ClickSound_SFX");
         Time.timeScale = 0f;
     }
 
@@ -203,6 +204,7 @@ public class InputSystem : MonoBehaviour
             anim.SetBool("isCrouchWalking", false);
         }
     }
+    
 
     void OnEnable()
     {

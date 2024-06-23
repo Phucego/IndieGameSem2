@@ -42,6 +42,7 @@ public class CloudManager : MonoBehaviour
                 direction.y = 0;
                 transform.DOComplete();
                 gameObject.transform.DOShakePosition(dissolveTimer, shakeStrength.normalized, vibration, randomness);
+                AudioManager.Instance.PlaySoundEffect("Explosion_SFX");
                 Invoke(nameof(RespawnCloud), respawnCloudTimer);    //Invoke the respawing function
             }
         }
@@ -61,6 +62,7 @@ public class CloudManager : MonoBehaviour
         isCloudDestroyed = false;
         isInteracted = false;
         _boxCol2d.enabled = true;
+        AudioManager.Instance.PlaySoundEffect("Pop_SFX");
         
     }
 

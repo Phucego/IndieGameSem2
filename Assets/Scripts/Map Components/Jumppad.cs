@@ -24,7 +24,7 @@ public class Jumppad : MonoBehaviour
         {
             anim.SetBool("isPlayerSteppedOn", true);
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce, ForceMode2D.Impulse);
-            
+            AudioManager.Instance.PlaySoundEffect("BouncePad_SFX");
         }
         if (collision.gameObject.CompareTag("PushableObj"))
         {
