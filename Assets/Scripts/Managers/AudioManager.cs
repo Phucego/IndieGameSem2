@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
         sfxSource = gameObject.AddComponent<AudioSource>();
         
         //TODO: Sound effects volume adjustment
-        sfxSource.volume = 0.42f;
+        sfxSource.volume = 0.3f;
         
         // TODO: Background music settings
         bgMusicSource.loop = true;

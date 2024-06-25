@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7936194725756989121}
   - component: {fileID: 7936194725756989149}
   - component: {fileID: 7936194725756989148}
-  - component: {fileID: 5744324165191999905}
   - component: {fileID: 7936194725756989150}
   - component: {fileID: 7936194725756989120}
   - component: {fileID: 7936194725756989122}
@@ -33,7 +32,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7936194725756989130}
-  m_LocalRotation: {x: 0.006551017, y: -0, z: -0, w: 0.99997854}
+  m_LocalRotation: {x: 0.0065536387, y: 0, z: 0, w: 0.99997854}
   m_LocalPosition: {x: -42.49, y: 0.35, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -87,7 +86,7 @@ SpriteRenderer:
   m_SortingOrder: 5
   m_Sprite: {fileID: 1335475257, guid: e3498a18b90d8724ab110190f7d1402c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.24, y: 0.24}
@@ -108,10 +107,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.5
+  m_Mass: 0.75
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 14
+  m_GravityScale: 8
   m_Material: {fileID: 6200000, guid: 21c3b51f8f3cab541b7d7553e875226f, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -238,28 +237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957cb2c2cf75b4a4390844efe84d4f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabDetection: {fileID: 0}
+  grabDetection: {fileID: 7936194727126834443}
   boxHolderPos: {fileID: 7936194726546370746}
-  rayDistance: 0
-  _inputSystemObserve: {fileID: 0}
---- !u!114 &5744324165191999905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7936194725756989130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41c6cffab3c6346409a773f7b8907cce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inputSystemObserve: {fileID: 0}
-  currentGate: {fileID: 0}
-  circleRadius: 0
-  m_GateMask:
-    serializedVersion: 2
-    m_Bits: 0
+  rayDistance: 0.33
+  _inputSystemObserve: {fileID: 7936194725756989121}
 --- !u!114 &7936194725756989150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,8 +296,8 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Device Simulator Touchscreen/touch0/tap]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7936194725756989148}
-        m_TargetAssemblyTypeName: GrabItemController, Assembly-CSharp
+      - m_Target: {fileID: 7936194725756989121}
+        m_TargetAssemblyTypeName: InputSystem, Assembly-CSharp
         m_MethodName: Interaction
         m_Mode: 0
         m_Arguments:
@@ -333,7 +314,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7936194725756989121}
         m_TargetAssemblyTypeName: InputSystem, Assembly-CSharp
-        m_MethodName: CounterJump
+        m_MethodName: Crouch
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -365,22 +346,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 59ce2d22-bdb8-4326-8909-05fc55c49757
     m_ActionName: Player/Movement[/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7936194725756989148}
-        m_TargetAssemblyTypeName: GrabItemController, Assembly-CSharp
-        m_MethodName: CancelInteract
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0014ae24-cf2d-4d73-9dd0-898535555b5f
-    m_ActionName: Player/CancelInteract[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -430,7 +395,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7936194725943946528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.028, y: -1.022, z: 0}
+  m_LocalPosition: {x: 0.043, y: -1.087, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -461,7 +426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7936194726546370747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.426, y: 0.081, z: 0}
+  m_LocalPosition: {x: 1.426, y: 0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

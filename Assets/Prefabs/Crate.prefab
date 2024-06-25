@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 513303108558285998}
   - component: {fileID: 513303108558285999}
   - component: {fileID: 513303108558285996}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crate
   m_TagString: PushableObj
   m_Icon: {fileID: 0}
@@ -101,11 +101,11 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: 82ea8a1bc4268d54786b2b2e95dac16b, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &513303108558285996
 BoxCollider2D:
@@ -120,7 +120,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.0053498745}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -131,5 +131,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.125, y: 1.125}
+  m_Size: {x: 1.125, y: 1.0715013}
   m_EdgeRadius: 0

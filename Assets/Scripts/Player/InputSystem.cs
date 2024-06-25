@@ -76,7 +76,9 @@ public class InputSystem : MonoBehaviour
     {
         //Reading values
         playerMovementDir = playerControls.ReadValue<Vector2>();
-       
+        
+        //TODO: Check if the player is on the ground, then jump
+        groundCheckCircle = Physics2D.OverlapCircle(groundChecking.transform.position, groundCheckRadius, platformLayer);
     }
 
     private void FixedUpdate() //handle physics
@@ -86,15 +88,12 @@ public class InputSystem : MonoBehaviour
         //TODO: Check velocity for animation
         anim.SetFloat("YAxisVelocity", rb2d.velocity.y);
         anim.SetFloat("ToIdleState", rb2d.velocity.y);
-
-
     }
 
     //Handle Jump inputs
     public void Jump(InputAction.CallbackContext ctx)
     {
-        //TODO: Check if the player is on the ground, then jump
-        groundCheckCircle = Physics2D.OverlapCircle(groundChecking.transform.position, groundCheckRadius, platformLayer);
+       
         
         //TODO: If all of these conditions are met, the player can jump
         if (!isCrouching && !isJumping && groundCheckCircle)
@@ -113,19 +112,17 @@ public class InputSystem : MonoBehaviour
         {
             isJumping = true;
             isFalling = false;
+            
         }
         else if (!isGrounded && !isJumping && isFalling && rb2d.velocity.y < 0)
         {
             isJumping = false;
             isFalling = true;
-
         }
-        else
+        /*else
         {
             isGrounded = true;
-            isJumping = false;
-            isFalling = false;
-        }
+        }*/
     }
 
     public void Crouch(InputAction.CallbackContext ctx)
@@ -175,8 +172,7 @@ public class InputSystem : MonoBehaviour
 
         Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.velocity.y);
         rb2d.velocity = playerVelocity;
-
-
+        
         //TODO: The player can only play animation when on the ground, if not moving then start idle anim
         if (playerVelocity.x > 0 && !isJumping && !isFalling && !isTurning)
         {
@@ -215,5 +211,14 @@ public class InputSystem : MonoBehaviour
     {
         playerControls.Disable();
     }
-
+    
+    //TODO: Play footsteps animation as long as the player is grounded and not underwater
+    public void PlayFootstepsOnFoot()
+    {
+        if (groundCheckCircle && !PlayerController.instance.isUnderWater)
+        {
+            AudioManager.Instance.PlaySoundEffect("Footstep_SFX");
+        }
+    }
+    
 }
