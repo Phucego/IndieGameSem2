@@ -22,6 +22,14 @@ public class EnemyScript : MonoBehaviour
        private bool movingRight = true;
        private Animator anim;
        
+       
+       public Transform[] points;
+       public Vector3[] pointPos;
+
+       public int startingPoint;
+       private int i;
+
+ 
        void Start()
        {    
            nextPoint = pointA.position;
@@ -29,23 +37,21 @@ public class EnemyScript : MonoBehaviour
            indicatorPatrol.SetActive(true);
            anim = GetComponent<Animator>();
            player = GameObject.Find("Player").transform;
+           
+           transform.position = points[startingPoint].position;    
 
        }
        void Update()
        {
            if (isChasing)
            {
-             
+               
                ChasePlayer();
                indicatorDetected.SetActive(true);
-              
-              
-               
                indicatorPatrol.SetActive(false);
            }
            else
            {
-               
                Patrol();
                CheckForPlayer();
                indicatorDetected.SetActive(false);
@@ -57,12 +63,19 @@ public class EnemyScript : MonoBehaviour
      
         void Patrol()
         {
-            if (Vector3.Distance(transform.position, nextPoint) < 0.1f || !IsGroundAhead())
+         
+            if (Vector2.Distance(transform.position, points[i].position) < 0.02)
             {
                 Flip();
-                nextPoint = movingRight ? pointB.position : pointA.position;
+                i++;
+                if (i == points.Length) // Check if the platform is on the last point or not
+                    //If it does then reset the points
+                {
+                    i = 0;
+                }
             }
-            transform.position = Vector3.MoveTowards(transform.position, nextPoint, speed * Time.deltaTime);
+            //Moving the platform
+            transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
         }
        //TODO: Checking the distance of the player by calculating from the enemy's position
        void CheckForPlayer()
@@ -78,8 +91,6 @@ public class EnemyScript : MonoBehaviour
         //TODO: Chase player state and logic
        void ChasePlayer()
        {
-           
-           
            transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
            hideCountdown = 10f;
            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
@@ -110,7 +121,12 @@ public class EnemyScript : MonoBehaviour
            Gizmos.color = Color.red;
            Gizmos.DrawWireSphere(transform.position, detectionRange);
        }
-      
+       public void InitMoving(Vector3[] movingPoint)
+       {
+           pointPos = movingPoint;
+       }
+  
+       
 }
 
 

@@ -58,7 +58,7 @@ public class InputSystem : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
 
-       
+        playerControls.Enable();
         _capsulecol2d = GetComponent<CapsuleCollider2D>();
         Time.timeScale = 0.95f;
 
@@ -93,8 +93,6 @@ public class InputSystem : MonoBehaviour
     //Handle Jump inputs
     public void Jump(InputAction.CallbackContext ctx)
     {
-       
-        
         //TODO: If all of these conditions are met, the player can jump
         if (!isCrouching && !isJumping && groundCheckCircle)
         {
@@ -202,12 +200,12 @@ public class InputSystem : MonoBehaviour
     }
     
 
-    void OnEnable()
+    public void OnEnableControls()
     {
         playerControls.Enable();
     }
 
-    private void OnDisable()
+    public void OnDisableControls()
     {
         playerControls.Disable();
     }
@@ -220,5 +218,10 @@ public class InputSystem : MonoBehaviour
             AudioManager.Instance.PlaySoundEffect("Footstep_SFX");
         }
     }
-    
+
+    public void FallingSFX()
+    {
+        AudioManager.Instance.PlaySoundEffect("Landing_SFX");
+    }
+
 }

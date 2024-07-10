@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 public class PlayerController : MonoBehaviour
 {
     // Singleton
@@ -19,7 +21,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
 
     private float circleRadius;
-
+    private Vector2 checkPointPos;
+    [SerializeField] private PlayableDirector _playableDir;
     private void Awake()
     {
         //If there is an instance and it is not the player, then delete
@@ -36,7 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         _inputSystem = GetComponent<InputSystem>();
         rb2d = GetComponent<Rigidbody2D>();
-        
+        transform.position = checkPointPos;
     }
 
 
@@ -79,8 +82,30 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.name.Contains("KillPlayer_"))
         {
             GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+            
             AudioManager.Instance.PlaySoundEffect("Hurt_SFX");   
-            KillPlayerManager.Instance.ResetLevel();
+            KillPlayerManager.Instance.Respawn();
+            StartCoroutine(ResetSpriteColor());
+
         }
     }
+
+    public void RespawnToCheckpoint()
+    {
+        transform.position = checkPointPos;
+    }
+
+    public void UpdatePointPos(Vector2 pos)
+    {
+        checkPointPos = pos;
+        AudioManager.Instance.PlaySoundEffect("Checkpoint_SFX");
+    }
+
+    IEnumerator ResetSpriteColor()
+    {
+        yield return new WaitForSeconds(0.75f);
+        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+    }
+
+   
 }

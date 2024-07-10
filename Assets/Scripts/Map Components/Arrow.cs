@@ -3,15 +3,15 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     public float speed = 5f;
-    public float lifeTime = 5f; // Time in seconds before the arrow is destroyed
+    public float lifeTime = 5f; 
     private Rigidbody2D rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, lifeTime); // Destroy the arrow after 'lifeTime' seconds
+        Destroy(gameObject, lifeTime); 
 
-        // Set the velocity of the arrow in the direction it is facing
+        // Set the velocity of the arrow in the direction it is facing (forward direction)
         rb.velocity = transform.right * speed;
     }
 

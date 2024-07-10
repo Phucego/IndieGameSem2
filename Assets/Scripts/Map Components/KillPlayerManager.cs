@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class KillPlayerManager : MonoBehaviour
 {
 
-   
+    
     public float transitionTime = 1.6f;
 
     public static KillPlayerManager Instance;
@@ -24,10 +24,11 @@ public class KillPlayerManager : MonoBehaviour
         }
     }
     //Prevent the player to continue while the transition is running
-    public void ResetLevel()
+    public void Respawn()
     {
-        //TODO: Reload the scene on death
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //TODO: Respawn the player to the nearest checkpoint
+        PlayerController.instance.RespawnToCheckpoint();
+        AudioManager.Instance.PlaySoundEffect("Hurt_SFX");
+   
     }
-    
 }

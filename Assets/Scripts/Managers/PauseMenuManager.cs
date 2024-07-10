@@ -20,4 +20,11 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
     }
+
+    public void ResetLevel()
+    {
+        AudioManager.Instance.PlaySoundEffect("ClickSound_SFX");
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex);
+    }
 }
