@@ -29,7 +29,7 @@ public class BatFlyMainMenu : MonoBehaviour
     void Update()
     {
         var randomSpeed = Random.Range(0.1f, 1f);
-        rb2d.velocity = new Vector2(endPoint.transform.position.x * randomSpeed, 0f);
+        rb2d.linearVelocity = new Vector2(endPoint.transform.position.x * randomSpeed, 0f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

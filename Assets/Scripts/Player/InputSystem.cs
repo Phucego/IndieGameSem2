@@ -86,8 +86,8 @@ public class InputSystem : MonoBehaviour
         Movement();
 
         //TODO: Check velocity for animation
-        anim.SetFloat("YAxisVelocity", rb2d.velocity.y);
-        anim.SetFloat("ToIdleState", rb2d.velocity.y);
+        anim.SetFloat("YAxisVelocity", rb2d.linearVelocity.y);
+        anim.SetFloat("ToIdleState", rb2d.linearVelocity.y);
     }
 
     //Handle Jump inputs
@@ -96,7 +96,7 @@ public class InputSystem : MonoBehaviour
         //TODO: If all of these conditions are met, the player can jump
         if (!isCrouching && !isJumping && groundCheckCircle)
         {
-            rb2d.velocity = Vector2.up * jumpPower;
+            rb2d.linearVelocity = Vector2.up * jumpPower;
             //TODO: Prevent the jumping sound effect to spam when player swims up
             if (!PlayerController.instance.isUnderWater)
             {
@@ -106,13 +106,13 @@ public class InputSystem : MonoBehaviour
         }
 
         //TODO: Check if it is jumping or falling
-        if (!isGrounded && isJumping && !isFalling && rb2d.velocity.y > 0)
+        if (!isGrounded && isJumping && !isFalling && rb2d.linearVelocity.y > 0)
         {
             isJumping = true;
             isFalling = false;
             
         }
-        else if (!isGrounded && !isJumping && isFalling && rb2d.velocity.y < 0)
+        else if (!isGrounded && !isJumping && isFalling && rb2d.linearVelocity.y < 0)
         {
             isJumping = false;
             isFalling = true;
@@ -168,8 +168,8 @@ public class InputSystem : MonoBehaviour
     {
         sr.transform.localScale = new Vector3(isFacingRight ? Mathf.Abs(sr.transform.localScale.x) : -Mathf.Abs(sr.transform.localScale.x), sr.transform.localScale.y, sr.transform.localScale.z);
 
-        Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.velocity.y);
-        rb2d.velocity = playerVelocity;
+        Vector2 playerVelocity = new Vector2(playerMovementDir.x * moveSpeed, rb2d.linearVelocity.y);
+        rb2d.linearVelocity = playerVelocity;
         
         //TODO: The player can only play animation when on the ground, if not moving then start idle anim
         if (playerVelocity.x > 0 && !isJumping && !isFalling && !isTurning)

@@ -12,7 +12,7 @@ public class Arrow : MonoBehaviour
         Destroy(gameObject, lifeTime); 
 
         // Set the velocity of the arrow in the direction it is facing (forward direction)
-        rb.velocity = transform.right * speed;
+        rb.linearVelocity = transform.right * speed;
     }
 
     void OnCollisionEnter2D(Collision2D collision)

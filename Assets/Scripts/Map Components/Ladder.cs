@@ -26,7 +26,7 @@ public class Ladder : MonoBehaviour
         if (isClimbing)
         {
             rb2d.gravityScale = 0f;
-            rb2d.velocity = new Vector2(rb2d.velocity.x, vertical * speed) * Time.deltaTime;
+            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, vertical * speed) * Time.deltaTime;
         }
         if(!isClimbing)
         {
